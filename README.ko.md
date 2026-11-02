@@ -4,7 +4,7 @@
 
 - Google Play 내부 베타: **0.6.1-beta.1 (9)**. [테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 기존 명단의 등록 계정 5개만 참여 가능.
 - 현재 초대 페이지 표시명: `io.github.doctor_clawler.rightpress (unreviewed)`. 일반 심사 전 임시 이름.
-- 정식 출시 준비: **1.0.0 (10)**. 프로덕션 심사 제출·공개 전. [출시 준비 기록](docs/play-production-release.md).
+- 정식 출시 심사: **1.0.0 (10)**. 2026-11-03 00:25 KST 검토 요청 접수·**검토 중**. 아직 공개 전이며 관리형 게시가 꺼져 있어 승인 후 자동 공개 예정. [출시 기록](docs/play-production-release.md).
 - GitHub APK 베타: **0.6.0-beta.1**. [출시 페이지](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)에서 다운로드.
 - 앱 표시 언어: **30개 언어·31개 로캘**. 중국어 간체·번체 포함.
 

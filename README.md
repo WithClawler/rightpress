@@ -4,7 +4,7 @@ Mouse button actions and external-keyboard shortcuts for **Android 14+**.
 
 **Google Play internal beta: 0.6.1-beta.1 (9).** [Join the internal test](https://play.google.com/apps/internaltest/4701300851549043962) with one of the five registered tester accounts. The invitation currently shows the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`.
 
-**Production release in preparation: 1.0.0 (10).** It has not been submitted for production review or publicly released. See the [release preparation record](docs/play-production-release.md).
+**Production review submitted: 1.0.0 (10).** Google Play accepted the submission at 00:25 KST on November 3, 2026 and lists it as **In review**. It is not publicly released. Managed publishing is off, so publication is set to proceed after approval. See the [release record](docs/play-production-release.md).
 
 **Latest GitHub APK beta: 0.6.0-beta.1.** [Release page](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1). Official beta APKs are attached to releases marked **Pre-release**.
 

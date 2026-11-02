@@ -4,7 +4,7 @@
 
 [Google Play 테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 기존 `Stack Rush App Tester Beta` 목록의 등록 계정 5개만 참여할 수 있다. GitHub APK의 최신 공개 버전은 [0.6.0-beta.1](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)이다.
 
-프로덕션용 **1.0.0 (10)**은 준비 중이며 아직 심사 제출·정식 출시하지 않았다. 현재 배포와 구분한 [출시 준비 기록](play-production-release.md)을 참조한다.
+프로덕션용 **1.0.0 (10)**은 2026-11-03 00:25 KST에 검토 요청이 접수됐고 제출 활동에 **검토 중**으로 표시됐다. 아직 정식 공개 전이다. 관리형 게시가 꺼져 있어 승인 후 자동 공개 예정이다. 현재 내부 테스트 배포와 구분한 [출시 기록](play-production-release.md)을 참조한다.
 
 ## 설치
 

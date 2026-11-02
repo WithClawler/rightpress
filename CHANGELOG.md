@@ -1,13 +1,13 @@
 # Changelog
 
-## 1.0.0 — production candidate (2026-11-03)
+## 1.0.0 — submitted for production review (2026-11-03)
 
 - Add a privacy-policy link to the in-app help in all 31 locales.
 - Display the installed app version and keep help readable on narrow screens with larger text.
 - Prepare Korean and English Play descriptions, current app screenshots and an accessibility disclosure demonstration.
 - Keep the package, signing certificate, Android 14 minimum and input behavior unchanged.
 
-VersionCode 10 is prepared for Google Play production review. This entry does not indicate review approval or public availability. See [release preparation](docs/play-production-release.md).
+Google Play accepted versionCode 10 for production review at 00:25 KST on November 3, 2026. Submission 1 includes the production release, Korean and English store listings, app content and store settings; its status is **In review**. It has not been approved or publicly released. Managed publishing is off, so publication is set to proceed after approval. See the [release record](docs/play-production-release.md).
 
 ## 0.6.1-beta.1 — Google Play internal test (2026-10-27)
 
