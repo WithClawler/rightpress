@@ -69,7 +69,7 @@
     <string name="consent_accept">Setuju dan buka tetapan</string>
     <string name="consent_save_failed">Persetujuan tidak dapat disimpan · cuba lagi</string>
     <string name="help_title">Cara penggunaan</string>
-    <string name="help_body">Pengendalian\n• Berfungsi di latar belakang selepas kebolehaksesan diaktifkan\n• Mengekalkan tetapan selepas skrin aplikasi ditutup\n• Berhenti jika perkhidmatan dimatikan atau aplikasi dihentikan paksa\n\nTetikus\n• Ctrl+Alt+R: tukar mod tetikus sahaja\n• Klik kanan: jalankan semasa butang ditekan\n• Tekan lama tidak disokong: sentuh apabila dilepaskan\n• Klik dan roda tetikus: ditukar kepada sentuhan\n• Seretan dan sentuhan terus mungkin berbeza\n• Tingkah laku penuding melayang adalah terhad\n\nPapan kekunci\n• Menyokong gabungan Ctrl/Alt + kekunci\n• Sesetengah pintasan sistem tidak boleh digunakan\n\nData\n• Menyemak kedudukan elemen skrin dan tindakan kebolehaksesan\n• Kandungan skrin dan sejarah input tidak pernah disimpan atau dihantar\n• Tetapan kekal pada peranti ini\n\nBeta\n• Android 14 atau lebih baharu\n• Tablet dan peranti input fizikal perlu diuji</string>
+    <string name="help_body">Pengendalian\n• Berfungsi di latar belakang selepas kebolehaksesan diaktifkan\n• Mengekalkan tetapan selepas skrin aplikasi ditutup\n• Berhenti jika perkhidmatan dimatikan atau aplikasi dihentikan paksa\n\nTetikus\n• Ctrl+Alt+R: tukar mod tetikus sahaja\n• Klik kanan: jalankan semasa butang ditekan\n• Tekan lama tidak disokong: sentuh apabila dilepaskan\n• Klik dan roda tetikus: ditukar kepada sentuhan\n• Seretan dan sentuhan terus mungkin berbeza\n• Tingkah laku penuding melayang adalah terhad\n\nPapan kekunci\n• Menyokong gabungan Ctrl/Alt + kekunci\n• Sesetengah pintasan sistem tidak boleh digunakan\n\nData\n• Menyemak kedudukan elemen skrin dan tindakan kebolehaksesan\n• Kandungan skrin dan sejarah input tidak pernah disimpan atau dihantar\n• Tetapan kekal pada peranti ini</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Tetapan kebolehaksesan</string>
     <string name="action_unknown">Tindakan tidak diketahui</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Bahasa</string>
     <string name="language_current">Bahasa: %1$s</string>
     <string name="language_system">Lalai sistem</string>
+    <string name="privacy_policy">Dasar privasi</string>
+    <string name="error_open_link">Tiada pelayar tersedia untuk membuka pautan ini</string>
 </resources>

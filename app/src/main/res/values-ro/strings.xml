@@ -69,7 +69,7 @@
     <string name="consent_accept">Acceptă și deschide setările</string>
     <string name="consent_save_failed">Consimțământul nu a putut fi salvat · încearcă din nou</string>
     <string name="help_title">Mod de utilizare</string>
-    <string name="help_body">Funcționare\n• Funcționează în fundal după activarea accesibilității\n• Păstrează setările după închiderea ecranului aplicației\n• Se oprește dacă serviciul este dezactivat sau aplicația este oprită forțat\n\nMouse\n• Ctrl+Alt+R: activează/dezactivează doar modul mouse\n• Clic dreapta: execută la apăsarea butonului\n• Apăsare lungă neacceptată: atingere la eliberare\n• Clicuri și rotiță: conversie în atingeri\n• Tragerea și atingerea directă pot diferi\n• Comportamentul la trecerea cursorului este limitat\n\nTastatură\n• Acceptă combinații Ctrl/Alt + tastă\n• Unele scurtături de sistem nu pot fi folosite\n\nDate\n• Verifică pozițiile elementelor și acțiunile de accesibilitate\n• Nu stochează și nu transmite conținutul ecranului sau istoricul de introducere\n• Setările rămân pe acest dispozitiv\n\nBeta\n• Android 14 sau mai recent\n• Sunt necesare teste pe tablete și dispozitive de intrare fizice</string>
+    <string name="help_body">Funcționare\n• Funcționează în fundal după activarea accesibilității\n• Păstrează setările după închiderea ecranului aplicației\n• Se oprește dacă serviciul este dezactivat sau aplicația este oprită forțat\n\nMouse\n• Ctrl+Alt+R: activează/dezactivează doar modul mouse\n• Clic dreapta: execută la apăsarea butonului\n• Apăsare lungă neacceptată: atingere la eliberare\n• Clicuri și rotiță: conversie în atingeri\n• Tragerea și atingerea directă pot diferi\n• Comportamentul la trecerea cursorului este limitat\n\nTastatură\n• Acceptă combinații Ctrl/Alt + tastă\n• Unele scurtături de sistem nu pot fi folosite\n\nDate\n• Verifică pozițiile elementelor și acțiunile de accesibilitate\n• Nu stochează și nu transmite conținutul ecranului sau istoricul de introducere\n• Setările rămân pe acest dispozitiv</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Setări de accesibilitate</string>
     <string name="action_unknown">Acțiune necunoscută</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Limbă</string>
     <string name="language_current">Limbă: %1$s</string>
     <string name="language_system">Implicită a sistemului</string>
+    <string name="privacy_policy">Politica de confidențialitate</string>
+    <string name="error_open_link">Nu este disponibil niciun browser pentru a deschide acest link</string>
 </resources>

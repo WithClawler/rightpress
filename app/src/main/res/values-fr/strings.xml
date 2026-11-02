@@ -69,7 +69,7 @@
     <string name="consent_accept">Accepter et ouvrir les paramètres</string>
     <string name="consent_save_failed">Impossible d’enregistrer le consentement · réessayez</string>
     <string name="help_title">Mode d’emploi</string>
-    <string name="help_body">Fonctionnement\n• Fonctionne en arrière-plan après activation de l’accessibilité\n• Conserve les réglages à la fermeture de l’écran de l’application\n• S’arrête si le service est désactivé ou si l’application est forcée à s’arrêter\n\nSouris\n• Ctrl+Alt+R : activer/désactiver uniquement le mode souris\n• Clic droit : agir dès l’appui sur le bouton\n• Appui long non pris en charge : toucher au relâchement\n• Clics et molette : conversion en gestes tactiles\n• Le glissement et le toucher direct peuvent différer\n• Le survol est limité\n\nClavier\n• Gère les combinaisons Ctrl/Alt + touche\n• Certains raccourcis système ne sont pas disponibles\n\nDonnées\n• Vérifie la position des éléments et les actions d’accessibilité\n• Ne stocke ni ne transmet jamais le contenu de l’écran ou l’historique des saisies\n• Les réglages restent sur cet appareil\n\nBêta\n• Android 14 ou version ultérieure\n• Des tests sur tablettes et périphériques d’entrée physiques sont nécessaires</string>
+    <string name="help_body">Fonctionnement\n• Fonctionne en arrière-plan après activation de l’accessibilité\n• Conserve les réglages à la fermeture de l’écran de l’application\n• S’arrête si le service est désactivé ou si l’application est forcée à s’arrêter\n\nSouris\n• Ctrl+Alt+R : activer/désactiver uniquement le mode souris\n• Clic droit : agir dès l’appui sur le bouton\n• Appui long non pris en charge : toucher au relâchement\n• Clics et molette : conversion en gestes tactiles\n• Le glissement et le toucher direct peuvent différer\n• Le survol est limité\n\nClavier\n• Gère les combinaisons Ctrl/Alt + touche\n• Certains raccourcis système ne sont pas disponibles\n\nDonnées\n• Vérifie la position des éléments et les actions d’accessibilité\n• Ne stocke ni ne transmet jamais le contenu de l’écran ou l’historique des saisies\n• Les réglages restent sur cet appareil</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Paramètres d’accessibilité</string>
     <string name="action_unknown">Action inconnue</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Langue</string>
     <string name="language_current">Langue : %1$s</string>
     <string name="language_system">Langue du système</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="error_open_link">Aucun navigateur disponible pour ouvrir ce lien</string>
 </resources>

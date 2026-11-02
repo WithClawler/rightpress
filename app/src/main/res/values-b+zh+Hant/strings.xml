@@ -69,7 +69,7 @@
     <string name="consent_accept">同意並開啟設定</string>
     <string name="consent_save_failed">無法儲存同意狀態 · 請重試</string>
     <string name="help_title">使用說明</string>
-    <string name="help_body">執行\n• 連線至無障礙服務後在背景運作\n• 關閉應用程式畫面後仍保留設定\n• 關閉服務或強制停止應用程式後停止運作\n\n滑鼠\n• Ctrl+Alt+R：僅切換滑鼠模式\n• 右鍵點擊：按下時立即執行\n• 不支援長按時：放開按鈕後模擬觸控\n• 點擊及滾輪輸入：轉換為觸控\n• 拖曳及直接觸控的效果可能不同\n• 游標暫留操作受限\n\n鍵盤\n• 支援 Ctrl/Alt + 按鍵組合\n• 部分系統快捷鍵無法使用\n\n資料\n• 檢查畫面元素位置及無障礙動作\n• 不儲存或傳輸畫面內容及輸入紀錄\n• 設定僅儲存在此裝置上\n\n測試版\n• Android 14 以上版本\n• 需在實際平板及輸入裝置上測試</string>
+    <string name="help_body">執行\n• 連線至無障礙服務後在背景運作\n• 關閉應用程式畫面後仍保留設定\n• 關閉服務或強制停止應用程式後停止運作\n\n滑鼠\n• Ctrl+Alt+R：僅切換滑鼠模式\n• 右鍵點擊：按下時立即執行\n• 不支援長按時：放開按鈕後模擬觸控\n• 點擊及滾輪輸入：轉換為觸控\n• 拖曳及直接觸控的效果可能不同\n• 游標暫留操作受限\n\n鍵盤\n• 支援 Ctrl/Alt + 按鍵組合\n• 部分系統快捷鍵無法使用\n\n資料\n• 檢查畫面元素位置及無障礙動作\n• 不儲存或傳輸畫面內容及輸入紀錄\n• 設定僅儲存在此裝置上</string>
     <string name="ok">確定</string>
     <string name="accessibility_settings">無障礙設定</string>
     <string name="action_unknown">未知動作</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">語言</string>
     <string name="language_current">語言：%1$s</string>
     <string name="language_system">系統預設</string>
+    <string name="privacy_policy">隱私權政策</string>
+    <string name="error_open_link">沒有可開啟此連結的瀏覽器</string>
 </resources>

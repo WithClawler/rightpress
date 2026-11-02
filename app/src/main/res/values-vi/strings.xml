@@ -69,7 +69,7 @@
     <string name="consent_accept">Đồng ý và mở cài đặt</string>
     <string name="consent_save_failed">Không lưu được sự đồng ý · thử lại</string>
     <string name="help_title">Cách sử dụng</string>
-    <string name="help_body">Hoạt động\n• Chạy nền sau khi bật trợ năng\n• Giữ cài đặt sau khi đóng màn hình ứng dụng\n• Dừng khi tắt dịch vụ hoặc buộc dừng ứng dụng\n\nChuột\n• Ctrl+Alt+R: chỉ bật/tắt chế độ chuột\n• Chuột phải: thực hiện khi nhấn nút\n• Không hỗ trợ nhấn giữ: chạm khi thả\n• Nhấp chuột và con lăn: chuyển thành thao tác chạm\n• Kéo và chạm trực tiếp có thể khác bình thường\n• Hành vi di chuột bị hạn chế\n\nBàn phím\n• Hỗ trợ tổ hợp Ctrl/Alt + phím\n• Một số phím tắt hệ thống không dùng được\n\nDữ liệu\n• Kiểm tra vị trí phần tử màn hình và thao tác trợ năng\n• Không bao giờ lưu hoặc gửi nội dung màn hình hay lịch sử nhập liệu\n• Cài đặt được giữ trên thiết bị này\n\nBeta\n• Android 14 trở lên\n• Cần kiểm thử trên máy tính bảng và thiết bị nhập liệu thực tế</string>
+    <string name="help_body">Hoạt động\n• Chạy nền sau khi bật trợ năng\n• Giữ cài đặt sau khi đóng màn hình ứng dụng\n• Dừng khi tắt dịch vụ hoặc buộc dừng ứng dụng\n\nChuột\n• Ctrl+Alt+R: chỉ bật/tắt chế độ chuột\n• Chuột phải: thực hiện khi nhấn nút\n• Không hỗ trợ nhấn giữ: chạm khi thả\n• Nhấp chuột và con lăn: chuyển thành thao tác chạm\n• Kéo và chạm trực tiếp có thể khác bình thường\n• Hành vi di chuột bị hạn chế\n\nBàn phím\n• Hỗ trợ tổ hợp Ctrl/Alt + phím\n• Một số phím tắt hệ thống không dùng được\n\nDữ liệu\n• Kiểm tra vị trí phần tử màn hình và thao tác trợ năng\n• Không bao giờ lưu hoặc gửi nội dung màn hình hay lịch sử nhập liệu\n• Cài đặt được giữ trên thiết bị này</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Cài đặt trợ năng</string>
     <string name="action_unknown">Thao tác không xác định</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Ngôn ngữ</string>
     <string name="language_current">Ngôn ngữ: %1$s</string>
     <string name="language_system">Mặc định hệ thống</string>
+    <string name="privacy_policy">Chính sách quyền riêng tư</string>
+    <string name="error_open_link">Không có trình duyệt để mở liên kết này</string>
 </resources>

@@ -69,7 +69,7 @@
     <string name="consent_accept">Concordar e abrir configurações</string>
     <string name="consent_save_failed">Não foi possível salvar o consentimento · tente novamente</string>
     <string name="help_title">Como usar</string>
-    <string name="help_body">Funcionamento\n• Funciona em segundo plano após ativar a acessibilidade\n• Mantém as configurações após fechar a tela do app\n• Para se o serviço for desativado ou o app for forçado a parar\n\nMouse\n• Ctrl+Alt+R: ativar/desativar apenas o modo mouse\n• Clique direito: agir ao pressionar o botão\n• Toque longo sem suporte: toque ao soltar\n• Cliques e roda: conversão em toques\n• Arrastar e tocar diretamente podem ter resultados diferentes\n• Comportamento ao passar o ponteiro é limitado\n\nTeclado\n• Suporta combinações Ctrl/Alt + tecla\n• Alguns atalhos do sistema não podem ser usados\n\nDados\n• Verifica posições de elementos e ações de acessibilidade\n• Não armazena nem transmite conteúdo da tela ou histórico de entrada\n• As configurações ficam neste dispositivo\n\nBeta\n• Android 14 ou posterior\n• É necessário testar em tablets e dispositivos de entrada físicos</string>
+    <string name="help_body">Funcionamento\n• Funciona em segundo plano após ativar a acessibilidade\n• Mantém as configurações após fechar a tela do app\n• Para se o serviço for desativado ou o app for forçado a parar\n\nMouse\n• Ctrl+Alt+R: ativar/desativar apenas o modo mouse\n• Clique direito: agir ao pressionar o botão\n• Toque longo sem suporte: toque ao soltar\n• Cliques e roda: conversão em toques\n• Arrastar e tocar diretamente podem ter resultados diferentes\n• Comportamento ao passar o ponteiro é limitado\n\nTeclado\n• Suporta combinações Ctrl/Alt + tecla\n• Alguns atalhos do sistema não podem ser usados\n\nDados\n• Verifica posições de elementos e ações de acessibilidade\n• Não armazena nem transmite conteúdo da tela ou histórico de entrada\n• As configurações ficam neste dispositivo</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Configurações de acessibilidade</string>
     <string name="action_unknown">Ação desconhecida</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Idioma</string>
     <string name="language_current">Idioma: %1$s</string>
     <string name="language_system">Padrão do sistema</string>
+    <string name="privacy_policy">Política de privacidade</string>
+    <string name="error_open_link">Nenhum navegador disponível para abrir este link</string>
 </resources>

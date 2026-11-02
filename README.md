@@ -4,7 +4,9 @@ Mouse button actions and external-keyboard shortcuts for **Android 14+**.
 
 **Google Play internal beta: 0.6.1-beta.1 (9).** [Join the internal test](https://play.google.com/apps/internaltest/4701300851549043962) with one of the five registered tester accounts. The invitation currently shows the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`.
 
-**Latest GitHub APK beta: 0.6.0-beta.1.** [Release page](https://github.com/doctor-clawler/rightpress/releases/tag/v0.6.0-beta.1). Official beta APKs are attached to releases marked **Pre-release**.
+**Production release in preparation: 1.0.0 (10).** It has not been submitted for production review or publicly released. See the [release preparation record](docs/play-production-release.md).
+
+**Latest GitHub APK beta: 0.6.0-beta.1.** [Release page](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1). Official beta APKs are attached to releases marked **Pre-release**.
 
 [한국어](README.ko.md) · [Privacy](PRIVACY.md) · [Changelog](CHANGELOG.md) · [Languages](LOCALIZATION.md) · [Contributing](CONTRIBUTING.md)
 
@@ -13,7 +15,7 @@ Mouse button actions and external-keyboard shortcuts for **Android 14+**.
   <img src="docs/images/keyboard.png" width="320" alt="RightPress external-keyboard shortcut list on an Android tablet">
 </p>
 
-Screenshots: 0.6.0-beta.1 running on the Android emulator in portrait orientation. Accessibility use requires the in-app disclosure and consent step.
+Screenshots: 1.0.0 (10) running on the Android emulator in portrait orientation. Accessibility use requires the in-app disclosure and consent step.
 
 ## Features
 
@@ -37,11 +39,13 @@ For long-press, RightPress first requests the target element's accessibility lon
 4. Open Android accessibility settings from the app and enable **RightPress input helper**.
 5. Return to RightPress and configure the `Mouse` and `Keyboard` tabs.
 
-The internal release is available to testers and has not received standard Google Play review. The registered-account invitation page was verified; accepting the invitation, installing from Play and testing accessibility on a physical tablet remain unverified. Play installation does not automatically grant accessibility access.
+The internal release is available to the five registered testers; this is not an open beta or a production release. On November 2, 2026, version 0.6.1-beta.1 (9) was downloaded from Play, installed and opened on a Galaxy XCover 5 (SM-G525N, Android 14). The test app was then uninstalled at the user’s request. Accessibility and external mouse/keyboard operation on that device were not tested. Play installation does not automatically grant accessibility access.
+
+A reported Play download failure on a Galaxy Tab A9 running Android 16 remains unresolved. Play showing an app as installed on the web does not verify its presence or launch on that device. The separate Android 16 emulator check installed a Play-signed APK through ADB; it did not verify a Play download or the main app screen because the Play licensing check redirected to the signed-out store.
 
 ### GitHub APK
 
-1. Download the APK from [Releases](https://github.com/doctor-clawler/rightpress/releases/tag/v0.6.0-beta.1). Actions artifacts are development builds, not the signed beta.
+1. Download the APK from [Releases](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1). Actions artifacts are development builds, not the signed beta.
 2. Install it on Android 14 or later. Allow installation from your download app if Android asks.
 3. Open RightPress → `Enable accessibility service`, read the accessibility disclosure and agree if you want to use the service.
 4. Open Android accessibility settings from the app and enable **RightPress input helper**.
@@ -79,7 +83,7 @@ Add a rule with `Keyboard → ＋ Add shortcut → Record key combination`, pres
 - Stop configurable shortcuts: turn off `Keyboard shortcuts`. The fixed `Ctrl+Alt+R` toggle remains available.
 - Stop all input handling and withdraw access: disable the service in Android accessibility settings.
 
-Closing the settings screen does not stop the service. On/off choices are saved. Android controls service startup and reconnection, so uninterrupted background operation is not guaranteed.
+The accessibility service must remain enabled to handle input while you use other apps. Closing the settings screen does not stop it, and you do not need to keep the display on. On/off choices are saved. Android manages service startup and reconnection; after a restart or system restriction, check the service state in RightPress and Android accessibility settings. Uninterrupted background operation and battery impact have not been verified on every device.
 
 ## Compatibility and beta scope
 
@@ -92,7 +96,7 @@ Mouse conversion uses a full-screen transparent accessibility overlay. Left clic
 - Physical tablets, Bluetooth/USB input devices, Samsung DeX, split screen, external displays and battery impact still need testing. Individual third-party apps are not guaranteed compatible.
 - Emulator checks, GitHub beta releases and internal-test availability do not establish standard Google Play approval.
 
-Report reproducible problems through [GitHub Issues](https://github.com/doctor-clawler/rightpress/issues). Include app/Android version, device and input-device models, connection type, screen orientation and steps. Issues are public: remove personal content, credentials and private screenshots. For vulnerabilities, see [SECURITY.md](SECURITY.md).
+For private support, email support@mibstudio.top. Report reproducible problems through [GitHub Issues](https://github.com/WithClawler/rightpress/issues). Include app/Android version, device and input-device models, connection type, screen orientation and steps. Issues are public: remove personal content, credentials and private screenshots. For vulnerabilities, see [SECURITY.md](SECURITY.md).
 
 ## Privacy and accessibility
 

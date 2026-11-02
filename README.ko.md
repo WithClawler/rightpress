@@ -4,7 +4,8 @@
 
 - Google Play 내부 베타: **0.6.1-beta.1 (9)**. [테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 기존 명단의 등록 계정 5개만 참여 가능.
 - 현재 초대 페이지 표시명: `io.github.doctor_clawler.rightpress (unreviewed)`. 일반 심사 전 임시 이름.
-- GitHub APK 베타: **0.6.0-beta.1**. [출시 페이지](https://github.com/doctor-clawler/rightpress/releases/tag/v0.6.0-beta.1)에서 다운로드.
+- 정식 출시 준비: **1.0.0 (10)**. 프로덕션 심사 제출·공개 전. [출시 준비 기록](docs/play-production-release.md).
+- GitHub APK 베타: **0.6.0-beta.1**. [출시 페이지](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)에서 다운로드.
 - 앱 표시 언어: **30개 언어·31개 로캘**. 중국어 간체·번체 포함.
 
 [English](README.md) · [개인정보 안내](PRIVACY.md) · [변경 기록](CHANGELOG.md) · [언어 지원](LOCALIZATION.md) · [기여 안내](CONTRIBUTING.md)
@@ -14,7 +15,7 @@
   <img src="docs/images/keyboard.png" width="320" alt="태블릿 키보드 단축키 화면">
 </p>
 
-화면: Android 에뮬레이터에서 실행한 0.6.0-beta.1 세로 화면. 접근성 사용 전 고지·동의 필요.
+화면: Android 에뮬레이터에서 실행한 1.0.0 (10) 세로 화면. 접근성 사용 전 고지·동의 필요.
 
 ## 기능
 
@@ -38,11 +39,13 @@
 4. 앱에서 Android 접근성 설정 열기 → **RightPress 입력 도우미** 켜기.
 5. 앱 복귀 → `마우스`·`키보드` 탭 설정.
 
-내부 테스트는 테스터에게 제공 중이며 일반 Google Play 심사는 받지 않은 상태. 등록 계정에서 초대 페이지가 열리는 것까지 확인. 초대 수락·Play 설치·실물 태블릿 접근성 동작은 미검증. Play에서 설치해도 접근성 권한은 직접 허용해야 함.
+지정된 5계정 대상 내부 테스트이며 공개 베타·정식 출시 상태는 아님. 2026-11-02 Galaxy XCover 5(SM-G525N, Android 14)에서 0.6.1-beta.1 (9)의 실제 Play 다운로드·설치·앱 첫 화면 실행 확인. 사용자 요청으로 테스트 앱 삭제 완료. 해당 기기의 접근성·외장 마우스·키보드 동작은 미검증. Play에서 설치해도 접근성 권한은 직접 허용해야 함.
+
+Galaxy Tab A9(Android 16)의 Play 다운로드 실패는 원인 미확정. Play 웹의 ‘이미 설치됨’ 표시는 기기 내 앱 존재·실행 확인과 별개. 별도 Android 16 에뮬레이터에서는 Play 서명 APK를 ADB로 설치했으나, Play 다운로드를 검증한 것은 아님. 로그인되지 않은 Play 스토어로 라이선스 확인이 이어져 앱 첫 화면 실행도 검증하지 못함.
 
 ### GitHub APK
 
-1. [Releases](https://github.com/doctor-clawler/rightpress/releases/tag/v0.6.0-beta.1)에서 APK 다운로드. Actions 산출물은 개발용 debug 빌드.
+1. [Releases](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)에서 APK 다운로드. Actions 산출물은 개발용 debug 빌드.
 2. Android 14 이상 기기에 설치. 필요 시 다운로드 앱의 외부 앱 설치 허용.
 3. RightPress 실행 → `접근성 서비스 켜기` → 사용 안내 확인 → 동의.
 4. 앱에서 Android 접근성 설정 열기 → **RightPress 입력 도우미** 켜기.
@@ -82,8 +85,8 @@
 - 마우스 중지: `Ctrl+Alt+R` · 우측 상단 `마우스 끄기` · 마우스 스위치.
 - 등록 단축키 중지: `키보드 단축키` OFF. 고정 `Ctrl+Alt+R`은 계속 사용 가능.
 - 전체 중지·접근성 권한 해제: Android 접근성 설정에서 서비스 OFF.
-- 앱 화면 종료 후에도 서비스 유지. 기능별 ON/OFF 저장.
-- 서비스 시작·재연결은 Android가 관리. 중단 없는 상시 실행 보장 없음.
+- 다른 앱에서 입력을 처리하려면 접근성 서비스를 켜 둬야 함. 설정 화면을 닫아도 작동하며 화면을 항상 켜 둘 필요는 없음. 기능별 ON/OFF 저장.
+- 서비스 시작·재연결은 Android가 관리. 재부팅이나 시스템 제한 후에는 앱·Android 접근성 설정에서 상태 확인. 기기별 중단 없는 실행·배터리 영향은 미검증.
 
 ## 제약·검증 범위
 
@@ -96,7 +99,7 @@
 - 실물 태블릿·Bluetooth/USB 입력장치·DeX·분할 화면·외부 디스플레이·배터리 영향: 추가 검증 필요.
 - 특정 외부 앱의 동작 보장 없음. 에뮬레이터 검증·GitHub 베타 배포·내부 테스트 제공과 Google Play 일반 심사는 별개.
 
-오류 제보: [GitHub Issues](https://github.com/doctor-clawler/rightpress/issues). 앱·Android 버전, 기기·입력장치 모델, 연결 방식, 화면 방향, 재현 단계 포함. 공개 게시물이므로 개인정보·인증정보·비공개 화면 제외. 보안 취약점은 [SECURITY.md](SECURITY.md) 참조.
+비공개 문의: support@mibstudio.top. 오류 제보: [GitHub Issues](https://github.com/WithClawler/rightpress/issues). 앱·Android 버전, 기기·입력장치 모델, 연결 방식, 화면 방향, 재현 단계 포함. 공개 게시물이므로 개인정보·인증정보·비공개 화면 제외. 보안 취약점은 [SECURITY.md](SECURITY.md) 참조.
 
 ## 접근성·개인정보
 

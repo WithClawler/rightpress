@@ -3,6 +3,7 @@ package io.github.doctor_clawler.rightpress;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -15,8 +16,13 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -38,6 +44,7 @@ import java.util.UUID;
 
 /** Local settings UI. Input is recorded only while the explicit recorder is active. */
 public final class MainActivity extends Activity {
+    private static final String PRIVACY_POLICY_URL = "https://github.com/WithClawler/rightpress/blob/main/PRIVACY.md";
     private static final int INK = 0xFFF0F2F5, MUTED = 0xFFA3ABB7, BLUE = 0xFF4B82FF;
     private static final int BG = 0xFF14171C, RAIL = 0xFF0F1217, LINE = 0xFF343B46;
     private static final int SURFACE = 0xFF222832, BRIGHT = 0xFF87AEFF;
@@ -189,7 +196,7 @@ public final class MainActivity extends Activity {
             gap(nav, 12);
             nav.addView(keyboardTab, new LinearLayout.LayoutParams(-1, -2));
             nav.addView(new View(this), new LinearLayout.LayoutParams(1, 0, 1));
-            TextView version = mono("0.6", 14, MUTED); version.setGravity(Gravity.CENTER); nav.addView(version);
+            TextView version = mono(appVersion(), 14, MUTED); version.setGravity(Gravity.CENTER); nav.addView(version);
         } else {
             nav.addView(mouseTab, new LinearLayout.LayoutParams(0, -2, 1));
             nav.addView(keyboardTab, new LinearLayout.LayoutParams(0, -2, 1));
@@ -593,10 +600,35 @@ public final class MainActivity extends Activity {
         if (languageDialog != null) languageDialog.dismiss();
         super.onDestroy();
     }
+    private String appVersion() {
+        try {
+            return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (android.content.pm.PackageManager.NameNotFoundException unavailable) {
+            return "";
+        }
+    }
+
     private void showHelp() {
-        styleDialog(new AlertDialog.Builder(this).setTitle(getString(R.string.help_title))
-                .setMessage(R.string.help_body)
-                .setPositiveButton(getString(R.string.ok), null).setNeutralButton(getString(R.string.accessibility_settings), (d, w) -> openSettings()).show());
+        String privacyLabel = getString(R.string.privacy_policy);
+        SpannableString message = new SpannableString(privacyLabel + "\n\n" + getString(R.string.help_body));
+        message.setSpan(new ClickableSpan() {
+            @Override public void onClick(View view) { openPrivacyPolicy(); }
+        }, 0, privacyLabel.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        AlertDialog dialog = new AlertDialog.Builder(this).setTitle(getString(R.string.help_title))
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.accessibility_settings), (d, w) -> openSettings()).show();
+        styleDialog(dialog);
+        TextView content = dialog.findViewById(android.R.id.message);
+        content.setLinkTextColor(BRIGHT);
+        content.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private void openPrivacyPolicy() {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(PRIVACY_POLICY_URL)));
+        } catch (ActivityNotFoundException unavailable) {
+            Toast.makeText(this, R.string.error_open_link, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void styleDialog(AlertDialog dialog) {

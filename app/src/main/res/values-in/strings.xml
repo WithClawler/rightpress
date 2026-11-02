@@ -69,7 +69,7 @@
     <string name="consent_accept">Setuju dan buka pengaturan</string>
     <string name="consent_save_failed">Persetujuan gagal disimpan · coba lagi</string>
     <string name="help_title">Cara penggunaan</string>
-    <string name="help_body">Pengoperasian\n• Berjalan di latar belakang setelah aksesibilitas diaktifkan\n• Pengaturan tetap tersimpan setelah layar aplikasi ditutup\n• Berhenti jika layanan dinonaktifkan atau aplikasi dipaksa berhenti\n\nMouse\n• Ctrl+Alt+R: ubah mode mouse saja\n• Klik kanan: jalankan saat tombol ditekan\n• Tekan lama tidak didukung: sentuh saat dilepas\n• Klik dan roda mouse: diubah menjadi sentuhan\n• Menyeret dan sentuhan langsung mungkin berbeda\n• Perilaku saat penunjuk melayang terbatas\n\nKeyboard\n• Mendukung kombinasi Ctrl/Alt + tombol\n• Beberapa pintasan sistem tidak dapat digunakan\n\nData\n• Memeriksa posisi elemen layar dan tindakan aksesibilitas\n• Konten layar dan riwayat input tidak pernah disimpan atau dikirim\n• Pengaturan tetap di perangkat ini\n\nBeta\n• Android 14 atau lebih baru\n• Perlu pengujian pada tablet dan perangkat input fisik</string>
+    <string name="help_body">Pengoperasian\n• Berjalan di latar belakang setelah aksesibilitas diaktifkan\n• Pengaturan tetap tersimpan setelah layar aplikasi ditutup\n• Berhenti jika layanan dinonaktifkan atau aplikasi dipaksa berhenti\n\nMouse\n• Ctrl+Alt+R: ubah mode mouse saja\n• Klik kanan: jalankan saat tombol ditekan\n• Tekan lama tidak didukung: sentuh saat dilepas\n• Klik dan roda mouse: diubah menjadi sentuhan\n• Menyeret dan sentuhan langsung mungkin berbeda\n• Perilaku saat penunjuk melayang terbatas\n\nKeyboard\n• Mendukung kombinasi Ctrl/Alt + tombol\n• Beberapa pintasan sistem tidak dapat digunakan\n\nData\n• Memeriksa posisi elemen layar dan tindakan aksesibilitas\n• Konten layar dan riwayat input tidak pernah disimpan atau dikirim\n• Pengaturan tetap di perangkat ini</string>
     <string name="ok">Oke</string>
     <string name="accessibility_settings">Pengaturan aksesibilitas</string>
     <string name="action_unknown">Tindakan tidak dikenal</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Bahasa</string>
     <string name="language_current">Bahasa: %1$s</string>
     <string name="language_system">Default sistem</string>
+    <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="error_open_link">Tidak ada browser untuk membuka tautan ini</string>
 </resources>

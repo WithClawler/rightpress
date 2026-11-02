@@ -1,6 +1,6 @@
 # RightPress privacy notice / 개인정보 안내
 
-Effective: 2026-10-26. Applies to RightPress 0.6.0-beta.1 and 0.6.1-beta.1. This revision updates version coverage and distribution information; the app's data handling is unchanged.
+Effective: 2026-11-02. Applies to RightPress 0.6.0-beta.1, 0.6.1-beta.1 and 1.0.0. This revision updates version coverage, in-app policy access and backup information; the app's data handling is unchanged.
 
 ## English
 
@@ -18,7 +18,7 @@ Accessibility permission is broad. Android may expose information through this p
 
 ### What stays on the device
 
-RightPress saves mouse/keyboard on/off settings, the selected mouse action, long-press options, configured shortcut combinations/actions/target packages, and accessibility-consent state in private app preferences. It does not upload these settings. The application disables app-data backup through `allowBackup="false"`.
+RightPress saves mouse/keyboard on/off settings, the selected mouse action, long-press options, configured shortcut combinations/actions/target packages, and accessibility-consent state in private app preferences. It does not upload these settings. The application sets `allowBackup="false"` to disable Android cloud backup. Device-to-device transfer may still be controlled by Android and the device manufacturer.
 
 Android’s per-app language system stores your language preference locally. It is managed separately from RightPress preferences, and RightPress does not upload it. Adding translations does not change the input or screen-data handling described above.
 
@@ -38,13 +38,13 @@ GitHub hosts the source, APK downloads and issue tracker. Using GitHub is separa
 
 If you join a test or download RightPress through Google Play, those store services are provided by Google and are covered by [Google's privacy policy](https://policies.google.com/privacy). Store account and test participation processing is separate from RightPress's on-device input handling. Google Play distribution does not add an account system or data-upload feature to RightPress.
 
-For questions about this notice, open an issue in [this repository](https://github.com/doctor-clawler/rightpress/issues). Issues and attachments are public: do not include personal information, passwords or private screen contents. For security vulnerabilities, follow [SECURITY.md](SECURITY.md).
+For private support, email support@mibstudio.top. Email support is separate from the app and follows the [MIB support-mail notice](https://mibstudio-support.pages.dev/support-mail/). Do not send passwords or private screen contents. You can also open an issue in [this repository](https://github.com/WithClawler/rightpress/issues). Issues and attachments are public: do not include personal information, passwords or private screen contents. For security vulnerabilities, follow [SECURITY.md](SECURITY.md).
 
 This notice will be updated when the app's data handling changes.
 
 ## 한국어
 
-- 대상: RightPress 0.6.0-beta.1·0.6.1-beta.1. 적용일: 2026-10-26. 이번 갱신은 버전 범위·배포 경로 안내만 변경. 앱의 데이터 처리 방식은 동일.
+- 대상: RightPress 0.6.0-beta.1·0.6.1-beta.1·1.0.0. 적용일: 2026-11-02. 이번 갱신은 버전 범위·앱 내 방침 접근·백업 안내를 보완. 앱의 데이터 처리 방식은 동일.
 - 계정·광고·분석 SDK·원격 서버·인터넷 권한 없음. 개발자에게 데이터 전송 없음.
 - 화면 접근성 정보: 요소 위치·계층·표시 상태·동작 확인에 사용. 요소 텍스트 읽기, 화면 내용 보관, 스크린샷 촬영 없음.
 - 포인터·터치 정보: 좌표·버튼·이동을 터치 제스처로 변환할 때 일시 사용.
@@ -53,13 +53,14 @@ This notice will be updated when the app's data handling changes.
 - 앱 선택: 조회 가능한 실행 앱 이름 표시. 선택한 앱 패키지 식별자만 규칙에 저장. `QUERY_ALL_PACKAGES` 권한 없음.
 - 로컬 저장: 기능별 ON/OFF, 우클릭 동작, 길게 누르기 옵션, 단축키 조합·동작·대상 앱, 접근성 동의 상태.
 - 앱 언어: Android 앱별 언어 시스템이 기기에 별도 저장. RightPress에서 업로드하지 않음. 번역 추가에 따른 입력·화면 데이터 처리 변경 없음.
-- 백업: 앱 데이터는 `allowBackup="false"` 설정. 설정 업로드 없음.
+- 백업: `allowBackup="false"`로 Android 클라우드 백업 비활성화. 앱에서 설정을 업로드하지 않음. 기기 간 데이터 이전은 Android·기기 제조사에서 별도로 처리할 수 있음.
 - 오류: Android 로컬 시스템 로그에 기술적 오류 메시지가 남을 수 있음. 입력 내용·화면 내용·단축키 사용 이력을 의도적으로 기록하지 않으며 오류 보고 서버로 전송하지 않음. Android·기기 제조사 자체 진단은 각 시스템에서 관리.
 - 권한 범위: 접근성 권한 자체는 넓음. 앱에서 사용하는 범위와 Android가 제공할 수 있는 범위는 다를 수 있음. 사용 전 앱 내 고지 확인·동의 후 서비스 활성화.
 - 중지: 앱에서 기능별 OFF 또는 Android 접근성 설정에서 **RightPress 입력 도우미** OFF.
 - 언어 초기화: 언어 선택에서 **시스템 기본값** 선택 시 앱별 언어 지정 해제.
 - 삭제: 개별 단축키 삭제 가능. 앱 저장공간 삭제·앱 제거 시 로컬 설정·동의 상태 삭제.
-- 문의: [GitHub Issues](https://github.com/doctor-clawler/rightpress/issues). 게시물은 공개되므로 개인정보·인증정보·비공개 화면 제외. 보안 제보는 [SECURITY.md](SECURITY.md).
+- 비공개 문의: support@mibstudio.top. 앱과 별도인 이메일 문의에는 [MIB 지원메일 안내](https://mibstudio-support.pages.dev/support-mail/) 적용. 비밀번호·비공개 화면 전송 제외.
+- 공개 오류 제보: [GitHub Issues](https://github.com/WithClawler/rightpress/issues). 게시물은 공개되므로 개인정보·인증정보·비공개 화면 제외. 보안 제보는 [SECURITY.md](SECURITY.md).
 - GitHub 소스·APK 다운로드·문의 기능은 앱과 별도. [GitHub 개인정보 정책](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) 적용.
 - Google Play에서 테스트에 참여하거나 앱을 받는 경우 해당 스토어 서비스에는 [Google 개인정보 정책](https://policies.google.com/privacy) 적용. 스토어 계정·테스트 참여 처리는 RightPress의 기기 내 입력 처리와 별도. Play 배포로 앱에 계정·데이터 업로드 기능을 추가하지 않음.
 - 데이터 처리 변경 시 이 안내 갱신.

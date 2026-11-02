@@ -2,7 +2,9 @@
 
 현재 Play 내부 테스트 버전: **`0.6.1-beta.1` / versionCode `9`**. 2026-10-27 01:57 KST에 Console의 **내부 테스터에게 제공됨** 상태와 **검토되지 않음** 표시를 확인했다.
 
-[Google Play 테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 기존 `Stack Rush App Tester Beta` 목록의 등록 계정 5개만 참여할 수 있다. GitHub APK의 최신 공개 버전은 [0.6.0-beta.1](https://github.com/doctor-clawler/rightpress/releases/tag/v0.6.0-beta.1)이다.
+[Google Play 테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 기존 `Stack Rush App Tester Beta` 목록의 등록 계정 5개만 참여할 수 있다. GitHub APK의 최신 공개 버전은 [0.6.0-beta.1](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)이다.
+
+프로덕션용 **1.0.0 (10)**은 준비 중이며 아직 심사 제출·정식 출시하지 않았다. 현재 배포와 구분한 [출시 준비 기록](play-production-release.md)을 참조한다.
 
 ## 설치
 
@@ -12,7 +14,11 @@
 4. 앱에서 Android 접근성 설정을 열어 **RightPress 입력 도우미**를 켠다.
 5. 앱으로 돌아와 마우스·키보드 기능을 설정한다.
 
-초대 페이지는 현재 임시 이름 `io.github.doctor_clawler.rightpress (unreviewed)`를 표시한다. 등록 계정으로 초대 페이지와 `Accept invite` 버튼을 확인했으며, 초대 수락이나 실제 Play 설치는 실행하지 않았다. 실물 태블릿에서의 접근성·입력 동작도 추가 검증이 필요하다.
+초대 페이지의 임시 이름은 `io.github.doctor_clawler.rightpress (unreviewed)`다. 지정된 5계정 대상 내부 테스트로, 공개 베타나 프로덕션 출시를 뜻하지 않는다.
+
+2026-11-02 Galaxy XCover 5(SM-G525N, Android 14)에서 실제 Play 다운로드·설치·앱 첫 화면 실행을 확인했다. 패키지 관리자의 버전은 `0.6.1-beta.1 (9)`, 설치 출처는 `com.android.vending`이었다. 이후 사용자 요청으로 앱을 삭제하고 패키지·서비스가 남지 않은 것을 확인했다. 전원 설정은 상시 켜짐 OFF·화면 꺼짐 30초로 유지했다. 접근성 서비스 활성화·외장 입력 동작은 이 검사에 포함되지 않았다.
+
+Galaxy Tab A9(Android 16)의 다운로드 실패는 원인 미확정이다. Play 웹의 원격 설치 접수나 ‘이미 설치됨’ 표시를 실기기 설치 성공으로 취급하지 않는다. Android 16 에뮬레이터에서는 Play 서명 APK의 ADB 설치만 성공했고, 라이선스 확인이 로그인되지 않은 Play 스토어로 이어져 앱 첫 화면 실행·Play 다운로드는 검증하지 못했다.
 
 ## 빌드
 
@@ -65,6 +71,10 @@ RightPress 실행 → 접근성 설정 → 안내에 동의 → Android 접근�
 동의 없이 시스템 설정에서 먼저 서비스를 켜면 앱이 서비스를 종료한다.
 
 직접 받은 APK에서 '제한된 설정'이 표시되면 Android 앱 정보의 '제한된 설정 허용' 경로를 확인한다. Play Protect 해제나 `isAccessibilityTool=true` 허위 선언으로 제한을 우회하지 않는다. RightPress는 일반 마우스·키보드 유틸로 `isAccessibilityTool=false`를 유지한다.
+
+## 백그라운드 동작
+
+다른 앱에서 마우스·키보드 입력을 처리하려면 접근성 서비스가 켜져 있어야 한다. 설정 화면을 닫아도 작동하며 화면을 항상 켜 둘 필요는 없다. 기능별 ON/OFF는 저장된다. Android가 서비스 시작·재연결을 관리하므로 재부팅이나 시스템 제한 후에는 앱과 접근성 설정에서 상태를 확인한다. 기기별 중단 없는 실행·배터리 영향은 추가 검증이 필요하다.
 
 ## 참고
 

@@ -69,7 +69,7 @@
     <string name="consent_accept">Sumang-ayon at buksan ang mga setting</string>
     <string name="consent_save_failed">Hindi na-save ang pahintulot · subukang muli</string>
     <string name="help_title">Paano gamitin</string>
-    <string name="help_body">Pagpapatakbo\n• Gumagana sa background kapag naka-enable ang accessibility\n• Pinapanatili ang mga setting pagkasara ng screen ng app\n• Hihinto kapag naka-disable ang serbisyo o sapilitang inihinto ang app\n\nMouse\n• Ctrl+Alt+R: i-on/i-off lang ang mouse mode\n• Right-click: kumilos sa pagpindot ng button\n• Hindi suportadong matagal na pagpindot: mag-tap sa pagbitiw\n• Mga click at galaw ng wheel: ginagawang pag-tap\n• Maaaring mag-iba ang pag-drag at direktang pag-tap\n• Limitado ang kilos ng pag-hover\n\nKeyboard\n• Suportado ang Ctrl/Alt + key\n• Hindi magagamit ang ilang shortcut ng system\n\nData\n• Sinusuri ang mga puwesto ng elemento at mga kilos ng accessibility\n• Hindi kailanman iniimbak o ipinapadala ang laman ng screen o kasaysayan ng input\n• Nananatili sa device na ito ang mga setting\n\nBeta\n• Android 14 o mas bago\n• Kailangan ng pagsubok sa mga aktuwal na tablet at input device</string>
+    <string name="help_body">Pagpapatakbo\n• Gumagana sa background kapag naka-enable ang accessibility\n• Pinapanatili ang mga setting pagkasara ng screen ng app\n• Hihinto kapag naka-disable ang serbisyo o sapilitang inihinto ang app\n\nMouse\n• Ctrl+Alt+R: i-on/i-off lang ang mouse mode\n• Right-click: kumilos sa pagpindot ng button\n• Hindi suportadong matagal na pagpindot: mag-tap sa pagbitiw\n• Mga click at galaw ng wheel: ginagawang pag-tap\n• Maaaring mag-iba ang pag-drag at direktang pag-tap\n• Limitado ang kilos ng pag-hover\n\nKeyboard\n• Suportado ang Ctrl/Alt + key\n• Hindi magagamit ang ilang shortcut ng system\n\nData\n• Sinusuri ang mga puwesto ng elemento at mga kilos ng accessibility\n• Hindi kailanman iniimbak o ipinapadala ang laman ng screen o kasaysayan ng input\n• Nananatili sa device na ito ang mga setting</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Mga setting ng accessibility</string>
     <string name="action_unknown">Hindi kilalang kilos</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Wika</string>
     <string name="language_current">Wika: %1$s</string>
     <string name="language_system">Default ng system</string>
+    <string name="privacy_policy">Patakaran sa privacy</string>
+    <string name="error_open_link">Walang browser na magagamit para buksan ang link na ito</string>
 </resources>

@@ -24,8 +24,8 @@ android {
         applicationId 'io.github.doctor_clawler.rightpress'
         minSdk 34
         targetSdk 36
-        versionCode 9
-        versionName '0.6.1-beta.1'
+        versionCode 10
+        versionName '1.0.0'
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
 

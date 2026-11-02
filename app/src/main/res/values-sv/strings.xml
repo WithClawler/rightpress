@@ -69,7 +69,7 @@
     <string name="consent_accept">Godkänn och öppna inställningar</string>
     <string name="consent_save_failed">Kunde inte spara samtycke · försök igen</string>
     <string name="help_title">Så fungerar det</string>
-    <string name="help_body">Drift\n• Körs i bakgrunden när tillgänglighet har aktiverats\n• Behåller inställningarna när du stänger appens skärm\n• Stoppas om tjänsten stängs av eller appen tvångsstoppas\n\nMus\n• Ctrl+Alt+R: slå på/av endast musläget\n• Högerklick: utför när knappen trycks ned\n• Långt tryck stöds inte: beröring när knappen släpps\n• Klick och mushjul: omvandlas till beröring\n• Dragning och direkt beröring kan skilja sig åt\n• Beteendet när pekaren förs över ett element är begränsat\n\nTangentbord\n• Stöder kombinationer av Ctrl/Alt + tangent\n• Vissa systemkortkommandon kan inte användas\n\nData\n• Kontrollerar skärmelementens positioner och tillgänglighetsåtgärder\n• Sparar eller överför aldrig skärminnehåll eller inmatningshistorik\n• Inställningarna stannar på denna enhet\n\nBeta\n• Android 14 eller senare\n• Testning på fysiska surfplattor och inmatningsenheter behövs</string>
+    <string name="help_body">Drift\n• Körs i bakgrunden när tillgänglighet har aktiverats\n• Behåller inställningarna när du stänger appens skärm\n• Stoppas om tjänsten stängs av eller appen tvångsstoppas\n\nMus\n• Ctrl+Alt+R: slå på/av endast musläget\n• Högerklick: utför när knappen trycks ned\n• Långt tryck stöds inte: beröring när knappen släpps\n• Klick och mushjul: omvandlas till beröring\n• Dragning och direkt beröring kan skilja sig åt\n• Beteendet när pekaren förs över ett element är begränsat\n\nTangentbord\n• Stöder kombinationer av Ctrl/Alt + tangent\n• Vissa systemkortkommandon kan inte användas\n\nData\n• Kontrollerar skärmelementens positioner och tillgänglighetsåtgärder\n• Sparar eller överför aldrig skärminnehåll eller inmatningshistorik\n• Inställningarna stannar på denna enhet</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Tillgänglighetsinställningar</string>
     <string name="action_unknown">Okänd åtgärd</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Språk</string>
     <string name="language_current">Språk: %1$s</string>
     <string name="language_system">Systemets standard</string>
+    <string name="privacy_policy">Integritetspolicy</string>
+    <string name="error_open_link">Ingen webbläsare tillgänglig för att öppna länken</string>
 </resources>

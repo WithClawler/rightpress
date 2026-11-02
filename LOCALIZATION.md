@@ -1,6 +1,6 @@
 # Localization
 
-RightPress 0.6.0-beta.1 provides **30 languages / 31 locales**. Chinese has separate Simplified and Traditional resources. English is the fallback. These are initial beta translations; native-speaker review has not been completed.
+RightPress 1.0.0 provides **30 languages / 31 locales**. Chinese has separate Simplified and Traditional resources. English is the fallback. Native-speaker review has not been completed.
 
 ## Language selection
 

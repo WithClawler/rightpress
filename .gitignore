@@ -36,6 +36,9 @@ __pycache__/
 docs/*
 !docs/images/
 !docs/google-play-testing.md
+!docs/store-listing.en.md
+!docs/store-listing.ko.md
+!docs/play-production-release.md
 
 # Added by _ops promote-thread
 .godot/

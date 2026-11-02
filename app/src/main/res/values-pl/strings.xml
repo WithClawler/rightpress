@@ -69,7 +69,7 @@
     <string name="consent_accept">Zgadzam się, otwórz ustawienia</string>
     <string name="consent_save_failed">Nie udało się zapisać zgody · spróbuj ponownie</string>
     <string name="help_title">Jak używać</string>
-    <string name="help_body">Działanie\n• Działa w tle po włączeniu dostępności\n• Zachowuje ustawienia po zamknięciu ekranu aplikacji\n• Zatrzymuje się po wyłączeniu usługi lub wymuszonym zatrzymaniu aplikacji\n\nMysz\n• Ctrl+Alt+R: włączanie/wyłączanie tylko trybu myszy\n• Prawy przycisk: wykonanie po naciśnięciu\n• Długie naciśnięcie nieobsługiwane: dotyk po zwolnieniu\n• Kliknięcia i kółko: zamiana na dotyk\n• Przeciąganie i bezpośredni dotyk mogą się różnić\n• Działanie po najechaniu wskaźnikiem jest ograniczone\n\nKlawiatura\n• Obsługuje kombinacje Ctrl/Alt + klawisz\n• Niektórych skrótów systemowych nie można użyć\n\nDane\n• Sprawdza położenie elementów i działania dostępności\n• Nie zapisuje ani nie przesyła zawartości ekranu lub historii wprowadzania\n• Ustawienia pozostają na tym urządzeniu\n\nBeta\n• Android 14 lub nowszy\n• Wymagane testy na fizycznych tabletach i urządzeniach wejściowych</string>
+    <string name="help_body">Działanie\n• Działa w tle po włączeniu dostępności\n• Zachowuje ustawienia po zamknięciu ekranu aplikacji\n• Zatrzymuje się po wyłączeniu usługi lub wymuszonym zatrzymaniu aplikacji\n\nMysz\n• Ctrl+Alt+R: włączanie/wyłączanie tylko trybu myszy\n• Prawy przycisk: wykonanie po naciśnięciu\n• Długie naciśnięcie nieobsługiwane: dotyk po zwolnieniu\n• Kliknięcia i kółko: zamiana na dotyk\n• Przeciąganie i bezpośredni dotyk mogą się różnić\n• Działanie po najechaniu wskaźnikiem jest ograniczone\n\nKlawiatura\n• Obsługuje kombinacje Ctrl/Alt + klawisz\n• Niektórych skrótów systemowych nie można użyć\n\nDane\n• Sprawdza położenie elementów i działania dostępności\n• Nie zapisuje ani nie przesyła zawartości ekranu lub historii wprowadzania\n• Ustawienia pozostają na tym urządzeniu</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Ustawienia dostępności</string>
     <string name="action_unknown">Nieznane działanie</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Język</string>
     <string name="language_current">Język: %1$s</string>
     <string name="language_system">Domyślny język systemu</string>
+    <string name="privacy_policy">Polityka prywatności</string>
+    <string name="error_open_link">Brak przeglądarki do otwarcia tego linku</string>
 </resources>

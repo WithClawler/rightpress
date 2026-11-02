@@ -69,7 +69,7 @@
     <string name="consent_accept">Souhlasit a otevřít nastavení</string>
     <string name="consent_save_failed">Souhlas se nepodařilo uložit · zkuste to znovu</string>
     <string name="help_title">Jak používat</string>
-    <string name="help_body">Provoz\n• Po zapnutí přístupnosti funguje na pozadí\n• Zachová nastavení po zavření obrazovky aplikace\n• Zastaví se při vypnutí služby nebo vynuceném zastavení aplikace\n\nMyš\n• Ctrl+Alt+R: zapnutí/vypnutí pouze režimu myši\n• Pravé tlačítko: provedení při stisknutí\n• Dlouhé stisknutí není podporováno: dotyk po uvolnění\n• Kliknutí a kolečko: převod na dotyky\n• Přetažení a přímý dotyk se mohou lišit\n• Chování při přejetí ukazatelem je omezené\n\nKlávesnice\n• Podporuje kombinace Ctrl/Alt + klávesa\n• Některé systémové zkratky nelze použít\n\nData\n• Kontroluje polohy prvků a akce přístupnosti\n• Neukládá ani nepřenáší obsah obrazovky nebo historii vstupů\n• Nastavení zůstává na tomto zařízení\n\nBeta\n• Android 14 nebo novější\n• Je nutné testování na fyzických tabletech a vstupních zařízeních</string>
+    <string name="help_body">Provoz\n• Po zapnutí přístupnosti funguje na pozadí\n• Zachová nastavení po zavření obrazovky aplikace\n• Zastaví se při vypnutí služby nebo vynuceném zastavení aplikace\n\nMyš\n• Ctrl+Alt+R: zapnutí/vypnutí pouze režimu myši\n• Pravé tlačítko: provedení při stisknutí\n• Dlouhé stisknutí není podporováno: dotyk po uvolnění\n• Kliknutí a kolečko: převod na dotyky\n• Přetažení a přímý dotyk se mohou lišit\n• Chování při přejetí ukazatelem je omezené\n\nKlávesnice\n• Podporuje kombinace Ctrl/Alt + klávesa\n• Některé systémové zkratky nelze použít\n\nData\n• Kontroluje polohy prvků a akce přístupnosti\n• Neukládá ani nepřenáší obsah obrazovky nebo historii vstupů\n• Nastavení zůstává na tomto zařízení</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Nastavení přístupnosti</string>
     <string name="action_unknown">Neznámá akce</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Jazyk</string>
     <string name="language_current">Jazyk: %1$s</string>
     <string name="language_system">Výchozí jazyk systému</string>
+    <string name="privacy_policy">Zásady ochrany soukromí</string>
+    <string name="error_open_link">Pro otevření tohoto odkazu není k dispozici prohlížeč</string>
 </resources>

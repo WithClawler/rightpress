@@ -69,7 +69,7 @@
     <string name="consent_accept">Accetta e apri impostazioni</string>
     <string name="consent_save_failed">Impossibile salvare il consenso · riprova</string>
     <string name="help_title">Come usare</string>
-    <string name="help_body">Funzionamento\n• Funziona in background dopo aver attivato l’accessibilità\n• Mantiene le impostazioni alla chiusura della schermata dell’app\n• Si interrompe se il servizio viene disattivato o l’app viene arrestata forzatamente\n\nMouse\n• Ctrl+Alt+R: attiva/disattiva solo la modalità mouse\n• Clic destro: agisce alla pressione del pulsante\n• Pressione prolungata non supportata: tocco al rilascio\n• Clic e rotellina: conversione in gesti tattili\n• Trascinamento e tocco diretto possono differire\n• Il comportamento al passaggio del puntatore è limitato\n\nTastiera\n• Supporta combinazioni Ctrl/Alt + tasto\n• Alcune scorciatoie di sistema non sono utilizzabili\n\nDati\n• Verifica posizioni degli elementi e azioni di accessibilità\n• Non salva né trasmette contenuti dello schermo o cronologia degli input\n• Le impostazioni restano su questo dispositivo\n\nBeta\n• Android 14 o versioni successive\n• Sono necessari test su tablet e dispositivi di input fisici</string>
+    <string name="help_body">Funzionamento\n• Funziona in background dopo aver attivato l’accessibilità\n• Mantiene le impostazioni alla chiusura della schermata dell’app\n• Si interrompe se il servizio viene disattivato o l’app viene arrestata forzatamente\n\nMouse\n• Ctrl+Alt+R: attiva/disattiva solo la modalità mouse\n• Clic destro: agisce alla pressione del pulsante\n• Pressione prolungata non supportata: tocco al rilascio\n• Clic e rotellina: conversione in gesti tattili\n• Trascinamento e tocco diretto possono differire\n• Il comportamento al passaggio del puntatore è limitato\n\nTastiera\n• Supporta combinazioni Ctrl/Alt + tasto\n• Alcune scorciatoie di sistema non sono utilizzabili\n\nDati\n• Verifica posizioni degli elementi e azioni di accessibilità\n• Non salva né trasmette contenuti dello schermo o cronologia degli input\n• Le impostazioni restano su questo dispositivo</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Impostazioni di accessibilità</string>
     <string name="action_unknown">Azione sconosciuta</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Lingua</string>
     <string name="language_current">Lingua: %1$s</string>
     <string name="language_system">Predefinita di sistema</string>
+    <string name="privacy_policy">Informativa sulla privacy</string>
+    <string name="error_open_link">Nessun browser disponibile per aprire questo link</string>
 </resources>

@@ -69,7 +69,7 @@
     <string name="consent_accept">Aceptar y abrir ajustes</string>
     <string name="consent_save_failed">No se pudo guardar el consentimiento · inténtalo de nuevo</string>
     <string name="help_title">Cómo usar</string>
-    <string name="help_body">Funcionamiento\n• Funciona en segundo plano al activar la accesibilidad\n• Conserva la configuración al cerrar la pantalla de la aplicación\n• Se detiene si se desactiva el servicio o se fuerza la detención de la aplicación\n\nRatón\n• Ctrl+Alt+R: activar/desactivar solo el modo ratón\n• Clic derecho: actuar al pulsar el botón\n• Pulsación larga no compatible: toque al soltar\n• Clics y rueda: conversión a gestos táctiles\n• El arrastre y el toque directo pueden diferir\n• El comportamiento al pasar el puntero es limitado\n\nTeclado\n• Admite combinaciones Ctrl/Alt + tecla\n• Algunos atajos del sistema no se pueden usar\n\nDatos\n• Comprueba posiciones de elementos y acciones de accesibilidad\n• No guarda ni transmite contenido de pantalla ni historial de entrada\n• La configuración permanece en este dispositivo\n\nBeta\n• Android 14 o posterior\n• Se requieren pruebas en tabletas y dispositivos de entrada físicos</string>
+    <string name="help_body">Funcionamiento\n• Funciona en segundo plano al activar la accesibilidad\n• Conserva la configuración al cerrar la pantalla de la aplicación\n• Se detiene si se desactiva el servicio o se fuerza la detención de la aplicación\n\nRatón\n• Ctrl+Alt+R: activar/desactivar solo el modo ratón\n• Clic derecho: actuar al pulsar el botón\n• Pulsación larga no compatible: toque al soltar\n• Clics y rueda: conversión a gestos táctiles\n• El arrastre y el toque directo pueden diferir\n• El comportamiento al pasar el puntero es limitado\n\nTeclado\n• Admite combinaciones Ctrl/Alt + tecla\n• Algunos atajos del sistema no se pueden usar\n\nDatos\n• Comprueba posiciones de elementos y acciones de accesibilidad\n• No guarda ni transmite contenido de pantalla ni historial de entrada\n• La configuración permanece en este dispositivo</string>
     <string name="ok">Aceptar</string>
     <string name="accessibility_settings">Ajustes de accesibilidad</string>
     <string name="action_unknown">Acción desconocida</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Idioma</string>
     <string name="language_current">Idioma: %1$s</string>
     <string name="language_system">Predeterminado del sistema</string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="error_open_link">No hay ningún navegador para abrir este enlace</string>
 </resources>

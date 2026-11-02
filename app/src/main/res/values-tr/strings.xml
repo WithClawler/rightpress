@@ -69,7 +69,7 @@
     <string name="consent_accept">Kabul et ve ayarları aç</string>
     <string name="consent_save_failed">Onay kaydedilemedi · yeniden deneyin</string>
     <string name="help_title">Nasıl kullanılır</string>
-    <string name="help_body">Çalışma\n• Erişilebilirlik etkinleştirildikten sonra arka planda çalışır\n• Uygulama ekranını kapatsanız da ayarlar korunur\n• Hizmet kapatılırsa veya uygulama zorla durdurulursa durur\n\nFare\n• Ctrl+Alt+R: yalnızca fare modunu aç/kapat\n• Sağ tıklama: düğmeye basınca çalıştır\n• Uzun basma desteklenmiyorsa: bırakınca dokun\n• Tıklamalar ve tekerlek girişi: dokunmaya dönüştürülür\n• Sürükleme ve doğrudan dokunma farklı davranabilir\n• Üzerine gelme davranışı sınırlıdır\n\nKlavye\n• Ctrl/Alt + tuş birleşimlerini destekler\n• Bazı sistem kısayolları kullanılamaz\n\nVeriler\n• Ekran öğelerinin konumlarını ve erişilebilirlik eylemlerini denetler\n• Ekran içeriğini veya giriş geçmişini asla kaydetmez ya da göndermez\n• Ayarlar bu cihazda kalır\n\nBeta\n• Android 14 veya üzeri\n• Gerçek tabletlerde ve giriş cihazlarında test gerekir</string>
+    <string name="help_body">Çalışma\n• Erişilebilirlik etkinleştirildikten sonra arka planda çalışır\n• Uygulama ekranını kapatsanız da ayarlar korunur\n• Hizmet kapatılırsa veya uygulama zorla durdurulursa durur\n\nFare\n• Ctrl+Alt+R: yalnızca fare modunu aç/kapat\n• Sağ tıklama: düğmeye basınca çalıştır\n• Uzun basma desteklenmiyorsa: bırakınca dokun\n• Tıklamalar ve tekerlek girişi: dokunmaya dönüştürülür\n• Sürükleme ve doğrudan dokunma farklı davranabilir\n• Üzerine gelme davranışı sınırlıdır\n\nKlavye\n• Ctrl/Alt + tuş birleşimlerini destekler\n• Bazı sistem kısayolları kullanılamaz\n\nVeriler\n• Ekran öğelerinin konumlarını ve erişilebilirlik eylemlerini denetler\n• Ekran içeriğini veya giriş geçmişini asla kaydetmez ya da göndermez\n• Ayarlar bu cihazda kalır</string>
     <string name="ok">Tamam</string>
     <string name="accessibility_settings">Erişilebilirlik ayarları</string>
     <string name="action_unknown">Bilinmeyen eylem</string>
@@ -109,4 +109,6 @@
     <string name="language_menu">Dil</string>
     <string name="language_current">Dil: %1$s</string>
     <string name="language_system">Sistem varsayılanı</string>
+    <string name="privacy_policy">Gizlilik politikası</string>
+    <string name="error_open_link">Bu bağlantıyı açacak bir tarayıcı yok</string>
 </resources>

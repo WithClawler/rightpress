@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 — production candidate (2026-11-03)
+
+- Add a privacy-policy link to the in-app help in all 31 locales.
+- Display the installed app version and keep help readable on narrow screens with larger text.
+- Prepare Korean and English Play descriptions, current app screenshots and an accessibility disclosure demonstration.
+- Keep the package, signing certificate, Android 14 minimum and input behavior unchanged.
+
+VersionCode 10 is prepared for Google Play production review. This entry does not indicate review approval or public availability. See [release preparation](docs/play-production-release.md).
+
 ## 0.6.1-beta.1 — Google Play internal test (2026-10-27)
 
 - Target Android 16 (API 36) while retaining Android 14 as the minimum version.
@@ -9,7 +18,7 @@
 - Publish versionCode 9 to the Google Play internal track for the five registered beta tester accounts. [Test invitation](https://play.google.com/apps/internaltest/4701300851549043962).
 - Enroll the existing app signing key in Play App Signing and verify that the Play app signing certificate matches the official GitHub APK certificate.
 
-The Console reports the release as available to internal testers and unreviewed. The invitation currently uses the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`; opening it with a registered account was verified. Invitation acceptance, Play installation and physical-tablet accessibility remain unverified. Play installation does not automatically grant accessibility access or establish standard policy approval. The latest GitHub APK release remains 0.6.0-beta.1.
+The Console reports the release as available to internal testers and unreviewed. The invitation currently uses the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`; opening it with a registered account was verified. A later 2026-11-02 check downloaded, installed and opened this version through Play on an Android 14 XCover 5; the test app was then removed. Physical-tablet accessibility remains unverified. Play installation does not automatically grant accessibility access or establish standard policy approval. The latest GitHub APK release remains 0.6.0-beta.1.
 
 ## 0.6.0-beta.1
 
@@ -21,7 +30,7 @@ The Console reports the release as available to internal testers and unreviewed.
 - Keep the selected language after accessibility service reconnection and size the overlay stop control for translated text and screen readers.
 - Keep the public package, release signing key, saved shortcuts and action identifiers unchanged. The signed APK updates the official 0.5.0 beta in place.
 
-Translations are an initial beta and have not received native-speaker review. The market-based language selection is not a measured user ranking. See [LOCALIZATION.md](LOCALIZATION.md) for coverage and contribution steps; the [release page](https://github.com/doctor-clawler/rightpress/releases/tag/v0.6.0-beta.1) records build-specific verification and APK size when published.
+Translations are an initial beta and have not received native-speaker review. The market-based language selection is not a measured user ranking. See [LOCALIZATION.md](LOCALIZATION.md) for coverage and contribution steps; the [release page](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1) records build-specific verification and APK size when published.
 
 ## 0.5.0-beta.1
 

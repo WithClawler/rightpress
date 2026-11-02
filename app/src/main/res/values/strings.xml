@@ -72,7 +72,7 @@
     <string name="consent_accept">Agree and open settings</string>
     <string name="consent_save_failed">Could not save consent · try again</string>
     <string name="help_title">How to use</string>
-    <string name="help_body">Running\n• Works in the background after accessibility is enabled\n• Keeps settings after you close the app screen\n• Stops if the service is disabled or the app is force-stopped\n\nMouse\n• Ctrl+Alt+R: toggle mouse mode only\n• Right-click: act on button press\n• Unsupported long press: touch on release\n• Clicks and wheel input: converted to touch\n• Dragging and direct touch may differ\n• Hover behavior is limited\n\nKeyboard\n• Supports Ctrl/Alt + key combinations\n• Some system shortcuts cannot be used\n\nData\n• Checks screen element positions and accessibility actions\n• Never stores or transmits screen content or input history\n• Settings stay on this device\n\nBeta\n• Android 14 or later\n• Physical tablets and input devices need testing</string>
+    <string name="help_body">Running\n• Works in the background after accessibility is enabled\n• Keeps settings after you close the app screen\n• Stops if the service is disabled or the app is force-stopped\n\nMouse\n• Ctrl+Alt+R: toggle mouse mode only\n• Right-click: act on button press\n• Unsupported long press: touch on release\n• Clicks and wheel input: converted to touch\n• Dragging and direct touch may differ\n• Hover behavior is limited\n\nKeyboard\n• Supports Ctrl/Alt + key combinations\n• Some system shortcuts cannot be used\n\nData\n• Checks screen element positions and accessibility actions\n• Never stores or transmits screen content or input history\n• Settings stay on this device</string>
     <string name="ok">OK</string>
     <string name="accessibility_settings">Accessibility settings</string>
     <string name="action_unknown">Unknown action</string>
@@ -112,4 +112,6 @@
     <string name="language_menu">Language</string>
     <string name="language_current">Language: %1$s</string>
     <string name="language_system">System default</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="error_open_link">No browser available to open this link</string>
 </resources>
