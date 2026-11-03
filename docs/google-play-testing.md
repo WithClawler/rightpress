@@ -35,6 +35,18 @@ python3 tools/localization.py check
 AAB: `app/build/outputs/bundle/release/app-release.aab`.
 모든 언어를 포함하며 별도 폰트·네이티브 라이브러리를 추가하지 않는다.
 
+## API 업로드
+
+Play Developer API로 테스트 트랙 업로드를 자동화한다. 서비스 계정은 `play-publisher@mib-support-mail-20261022.iam.gserviceaccount.com`(MIB Operations 프로젝트)이고, 키는 저장소 밖 `~/.config/works/google-play/play-publisher.json`(0600)에 둔다. Play Console의 **사용자 및 권한**에서 이 계정을 RightPress 앱에 한정해 초대해야 동작한다.
+
+```sh
+python3 tools/play_publish.py check     # 권한 확인, 변경 없음
+python3 tools/play_publish.py upload --aab <signed.aab> --track internal
+python3 tools/play_publish.py status    # 트랙별 출시 재조회
+```
+
+출시 노트는 `fastlane/metadata/android/<언어>/changelogs/<versionCode>.txt`에서 읽는다. 업로드 후 같은 명령이 트랙 상태를 다시 읽어 출력한다.
+
 ## 기존 설치와 서명
 
 Play App Signing에 **기존 앱 서명키**를 등록했다. PEPK 암호화 파일 업로드·저장 후 Console의 **앱 서명 인증서**가 기존 공식 APK 인증서와 일치함을 확인했다. AAB 업로드 인증서만 비교한 결과가 아니다.

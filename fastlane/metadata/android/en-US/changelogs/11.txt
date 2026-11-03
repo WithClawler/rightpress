@@ -1,0 +1,1 @@
+Opening accessibility settings now jumps to RightPress and highlights it, so the service is easy to find.
