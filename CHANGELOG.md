@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Open Android accessibility settings scrolled to RightPress with its entry highlighted, so the service is easy to find.
+
 ## 1.0.0 — submitted for production review (2026-11-03)
 
 - Add a privacy-policy link to the in-app help in all 31 locales.

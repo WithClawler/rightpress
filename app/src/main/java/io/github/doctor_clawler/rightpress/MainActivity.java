@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -573,7 +574,7 @@ public final class MainActivity extends Activity {
     }
     private void openSettings() {
         if (AccessibilityConsent.isAccepted(this)) {
-            startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+            openAccessibilitySettings();
             return;
         }
         if (consentDialog != null && consentDialog.isShowing()) return;
@@ -592,8 +593,19 @@ public final class MainActivity extends Activity {
                 return;
             }
             consentDialog.dismiss();
-            startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+            openAccessibilitySettings();
         });
+    }
+    private void openAccessibilitySettings() { startActivity(accessibilitySettingsIntent(this)); }
+    static Intent accessibilitySettingsIntent(Context context) {
+        // Settings scrolls to and flashes the preference whose key matches these extras;
+        // the accessibility list keys each service by its flattened component name.
+        String serviceKey = new ComponentName(context, MouseLongPressService.class).flattenToString();
+        Bundle args = new Bundle();
+        args.putString(":settings:fragment_args_key", serviceKey);
+        return new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+                .putExtra(":settings:fragment_args_key", serviceKey)
+                .putExtra(":settings:show_fragment_args", args);
     }
     @Override protected void onDestroy() {
         if (consentDialog != null) consentDialog.dismiss();

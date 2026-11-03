@@ -341,6 +341,20 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         }
     }
 
+    public void testAccessibilitySettingsIntentHighlightsRightPressService() {
+        Context context = instrumentation.getTargetContext();
+        Intent intent = MainActivity.accessibilitySettingsIntent(context);
+        String serviceKey = new ComponentName(context, MouseLongPressService.class).flattenToString();
+        assertEquals(Settings.ACTION_ACCESSIBILITY_SETTINGS, intent.getAction());
+        assertEquals("Settings must scroll to the RightPress service", serviceKey,
+                intent.getStringExtra(":settings:fragment_args_key"));
+        Bundle args = intent.getBundleExtra(":settings:show_fragment_args");
+        assertNotNull("Settings fragments read the highlight key from their arguments", args);
+        assertEquals(serviceKey, args.getString(":settings:fragment_args_key"));
+        assertNotNull("The highlighted settings screen must resolve on this device",
+                intent.resolveActivity(context.getPackageManager()));
+    }
+
     public void testConsentReceiptMustMatchCurrentDisclosureVersion() {
         Context context = instrumentation.getTargetContext();
         try {
