@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.1 — Google Play internal test (2026-11-03)
+## 1.0.1 (versionCode 11) — built, not yet uploaded to Google Play
 
 - Open Android accessibility settings scrolled to RightPress with its entry highlighted, so the service is easy to find.
 
