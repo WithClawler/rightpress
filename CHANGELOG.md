@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.1 — Google Play internal test (2026-11-03)
 
 - Open Android accessibility settings scrolled to RightPress with its entry highlighted, so the service is easy to find.
 
