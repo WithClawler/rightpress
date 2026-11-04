@@ -2,9 +2,9 @@
 
 Mouse button actions and external-keyboard shortcuts for **Android 14+**.
 
-**Google Play release: 1.0.0 (10).** [Install from Google Play](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress). The Console records publication at 14:43 KST on November 4, 2026; the public listing offers installation without joining a test. See the [release record](docs/play-production-release.md).
+**Google Play release: 1.0.2 (12).** [Install from Google Play](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress). The Console records publication at 21:44 KST on November 4, 2026; the public listing offers installation without joining a test. See the [release record](docs/play-production-release.md).
 
-**Update in review: 1.0.2 (12).** Adds a separate accessibility setup guide in all 31 locales. The production rollout request was accepted at 21:17 KST on November 4, 2026 (submission 2). Approval is pending; the public version remains 1.0.0 (10).
+**Accessibility setup update:** Adds a separate guide in all 31 locales and retains the service-entry scroll/highlight hint for supported Android settings screens. Submission 2 is published with a 100% production rollout. The Console and Korean and US public listings were rechecked on November 5, 2026.
 
 **Earlier internal test: 0.6.1-beta.1 (9).** The [test invitation](https://play.google.com/apps/internaltest/4701300851549043962) was limited to five registered accounts and used the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`.
 
@@ -40,7 +40,7 @@ For long-press, RightPress first requests the target element's accessibility lon
 3. In Android accessibility settings, open **Installed apps** on Samsung devices, or **Downloaded apps** on other devices. Select the localized **RightPress input helper**, turn on **Use** and confirm **Allow**.
 4. Return to RightPress and configure the `Mouse` and `Keyboard` tabs.
 
-The 1.0.2 update under review adds a separate guide before opening Android settings from both the main connection button and Help. It uses the service name in the selected language. Saved consent is not requested again; canceling this guide changes neither settings nor the saved consent state. Supported settings screens may scroll to or highlight the service entry. Opening its detailed switch directly is not guaranteed. These guide changes are not yet in the public 1.0.0 release.
+The public 1.0.2 update adds a separate guide before opening Android settings from both the main connection button and Help. It uses the service name in the selected language. Saved consent is not requested again; canceling this guide changes neither settings nor the saved consent state. Supported settings screens may scroll to or highlight the service entry. Opening its detailed switch directly is not guaranteed.
 
 ### Earlier Google Play internal test
 

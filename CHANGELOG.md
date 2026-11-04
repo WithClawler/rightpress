@@ -1,13 +1,13 @@
 # Changelog
 
-## 1.0.2 (versionCode 12) — submitted for production review (2026-11-04)
+## 1.0.2 (versionCode 12) — Google Play production release (2026-11-04)
 
 - Add a separate accessibility setup guide in all 31 locales before opening system settings from the main connection button or Help.
 - Show the Samsung Installed apps path or the general Downloaded apps path with the localized service name.
 - Keep first-use consent separate from setup instructions. Existing consent is not requested again; canceling the guide does not change settings or saved consent.
 - Retain the supported-settings hint to scroll to or highlight the service entry. A direct jump to its detailed switch is not guaranteed.
 
-The release was built from clean `release` source at tag `v1.0.2-12`. QA passed 38 regression tests and one narrow-screen check covering all 31 locales; the final release APK separately passed an update-install, launch and Help → guide → Android settings smoke check. Lint reported 0 errors and 7 warnings, and CI passed. Google Play accepted the 100% production rollout request at 21:17 KST on November 4, 2026 (submission 2); its status is **In review**. Approval is pending and the public version remains 1.0.0 (10). See the [release record](docs/play-production-release.md).
+The release was built from clean `release` source at tag `v1.0.2-12`. QA passed 38 regression tests and one narrow-screen check covering all 31 locales; the final release APK separately passed an update-install, launch and Help → guide → Android settings smoke check. Lint reported 0 errors and 7 warnings, and CI passed. Google Play accepted the 100% production rollout request at 21:17 KST on November 4, 2026 (submission 2) and records it as **Published** at 21:44 KST. A November 5 readback confirmed the Console status and version 1.0.2 in the Korean and US public listings. See the [release record](docs/play-production-release.md).
 
 ## 1.0.1 (versionCode 11) — earlier unreleased candidate
 
