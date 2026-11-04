@@ -1,0 +1,1 @@
+Show step-by-step accessibility setup instructions before opening Android settings, including the Samsung Installed apps path. Instructions are available in all supported languages. Existing shortcuts and consent are preserved.

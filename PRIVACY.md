@@ -1,6 +1,6 @@
 # RightPress privacy notice / 개인정보 안내
 
-Effective: 2026-11-02. Applies to RightPress 0.6.0-beta.1, 0.6.1-beta.1 and 1.0.0. This revision updates version coverage, in-app policy access and backup information; the app's data handling is unchanged.
+Effective: 2026-11-04. Applies to RightPress 0.6.0-beta.1, 0.6.1-beta.1, 1.0.0 and 1.0.2. This revision adds the accessibility setup-guide release to version coverage; the app's data handling is unchanged.
 
 ## English
 
@@ -44,7 +44,7 @@ This notice will be updated when the app's data handling changes.
 
 ## 한국어
 
-- 대상: RightPress 0.6.0-beta.1·0.6.1-beta.1·1.0.0. 적용일: 2026-11-02. 이번 갱신은 버전 범위·앱 내 방침 접근·백업 안내를 보완. 앱의 데이터 처리 방식은 동일.
+- 대상: RightPress 0.6.0-beta.1·0.6.1-beta.1·1.0.0·1.0.2. 적용일: 2026-11-04. 이번 갱신은 접근성 설정 경로 안내 버전을 적용 대상에 추가. 앱의 데이터 처리 방식은 동일.
 - 계정·광고·분석 SDK·원격 서버·인터넷 권한 없음. 개발자에게 데이터 전송 없음.
 - 화면 접근성 정보: 요소 위치·계층·표시 상태·동작 확인에 사용. 요소 텍스트 읽기, 화면 내용 보관, 스크린샷 촬영 없음.
 - 포인터·터치 정보: 좌표·버튼·이동을 터치 제스처로 변환할 때 일시 사용.

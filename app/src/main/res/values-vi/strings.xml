@@ -66,7 +66,10 @@
     <string name="launch_app_named">Mở ứng dụng · %1$s</string>
     <string name="consent_title">Quyền truy cập trợ năng</string>
     <string name="consent_body">RightPress dùng Accessibility API để xử lý nhấp chuột phải và phím tắt từ bàn phím ngoài. Dịch vụ hoạt động khi được bật, ngay cả sau khi bạn đóng màn hình ứng dụng.\n\nTruy cập và thao tác\n• Kiểm tra cấu trúc phân cấp, vị trí và thao tác được hỗ trợ của các phần tử màn hình\n• Nhận sự kiện phím và đối chiếu với phím tắt của bạn\n• Chuyển nhấp chuột phải, nhấp chuột và con lăn thành nhấn giữ, chạm và cuộn\n• Thực hiện các thao tác Quay lại, Trang chủ, thông báo và mở ứng dụng mà bạn chọn\n\nLưu trữ và chia sẻ\n• Không bao giờ lưu nội dung màn hình hay lịch sử nhập liệu\n• Chỉ lưu cài đặt và sự đồng ý trên thiết bị này\n• Không truyền hoặc chia sẻ ra bên ngoài\n\nBạn có thể tắt dịch vụ bất cứ lúc nào trong cài đặt trợ năng của Android.</string>
-    <string name="consent_accept">Đồng ý và mở cài đặt</string>
+    <string name="consent_accept">Đồng ý và tiếp tục</string>
+    <string name="accessibility_setup_title">Bật RightPress</string>
+    <string name="accessibility_setup_samsung_steps">1. Mở Ứng dụng đã cài đặt.\n2. Chọn %1$s.\n3. Bật Sử dụng rồi nhấn Cho phép.</string>
+    <string name="accessibility_setup_steps">1. Trong Ứng dụng đã tải xuống, mở %1$s.\n2. Bật Sử dụng rồi nhấn Cho phép.</string>
     <string name="consent_save_failed">Không lưu được sự đồng ý · thử lại</string>
     <string name="help_title">Cách sử dụng</string>
     <string name="help_body">Hoạt động\n• Chạy nền sau khi bật trợ năng\n• Giữ cài đặt sau khi đóng màn hình ứng dụng\n• Dừng khi tắt dịch vụ hoặc buộc dừng ứng dụng\n\nChuột\n• Ctrl+Alt+R: chỉ bật/tắt chế độ chuột\n• Chuột phải: thực hiện khi nhấn nút\n• Không hỗ trợ nhấn giữ: chạm khi thả\n• Nhấp chuột và con lăn: chuyển thành thao tác chạm\n• Kéo và chạm trực tiếp có thể khác bình thường\n• Hành vi di chuột bị hạn chế\n\nBàn phím\n• Hỗ trợ tổ hợp Ctrl/Alt + phím\n• Một số phím tắt hệ thống không dùng được\n\nDữ liệu\n• Kiểm tra vị trí phần tử màn hình và thao tác trợ năng\n• Không bao giờ lưu hoặc gửi nội dung màn hình hay lịch sử nhập liệu\n• Cài đặt được giữ trên thiết bị này</string>

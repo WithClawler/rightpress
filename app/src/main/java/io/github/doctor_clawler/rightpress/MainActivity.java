@@ -64,6 +64,7 @@ public final class MainActivity extends Activity {
     private boolean refreshing;
     private Editor editor;
     private AlertDialog consentDialog;
+    private AlertDialog accessibilitySetupDialog;
     private AlertDialog languageDialog;
     private final BroadcastReceiver stateReceiver = new BroadcastReceiver() {
         @Override public void onReceive(Context context, Intent intent) { refresh(); }
@@ -596,7 +597,21 @@ public final class MainActivity extends Activity {
             openAccessibilitySettings();
         });
     }
-    private void openAccessibilitySettings() { startActivity(accessibilitySettingsIntent(this)); }
+    private void openAccessibilitySettings() {
+        if (accessibilitySetupDialog != null && accessibilitySetupDialog.isShowing()) return;
+        int steps = "samsung".equalsIgnoreCase(android.os.Build.MANUFACTURER)
+                ? R.string.accessibility_setup_samsung_steps : R.string.accessibility_setup_steps;
+        accessibilitySetupDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.accessibility_setup_title)
+                .setMessage(getString(steps, bidi(getString(R.string.service_name))))
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.accessibility_settings,
+                        (dialog, which) -> startActivity(accessibilitySettingsIntent(this)))
+                .create();
+        accessibilitySetupDialog.setOnDismissListener(dialog -> accessibilitySetupDialog = null);
+        accessibilitySetupDialog.show();
+        styleDialog(accessibilitySetupDialog);
+    }
     static Intent accessibilitySettingsIntent(Context context) {
         // Settings scrolls to and flashes the preference whose key matches these extras;
         // the accessibility list keys each service by its flattened component name.
@@ -609,6 +624,7 @@ public final class MainActivity extends Activity {
     }
     @Override protected void onDestroy() {
         if (consentDialog != null) consentDialog.dismiss();
+        if (accessibilitySetupDialog != null) accessibilitySetupDialog.dismiss();
         if (languageDialog != null) languageDialog.dismiss();
         super.onDestroy();
     }

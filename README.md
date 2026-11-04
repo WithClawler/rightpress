@@ -2,9 +2,11 @@
 
 Mouse button actions and external-keyboard shortcuts for **Android 14+**.
 
-**Google Play internal beta: 0.6.1-beta.1 (9).** [Join the internal test](https://play.google.com/apps/internaltest/4701300851549043962) with one of the five registered tester accounts. The invitation currently shows the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`.
+**Google Play release: 1.0.0 (10).** [Install from Google Play](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress). The Console records publication at 14:43 KST on November 4, 2026; the public listing offers installation without joining a test. See the [release record](docs/play-production-release.md).
 
-**Production review submitted: 1.0.0 (10).** Google Play accepted the submission at 00:25 KST on November 3, 2026 and lists it as **In review**. It is not publicly released. Managed publishing is off, so publication is set to proceed after approval. See the [release record](docs/play-production-release.md).
+**Next candidate: 1.0.2 (12).** Adds a separate accessibility setup guide in all 31 locales. It has not been uploaded or submitted to Google Play.
+
+**Earlier internal test: 0.6.1-beta.1 (9).** The [test invitation](https://play.google.com/apps/internaltest/4701300851549043962) was limited to five registered accounts and used the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`.
 
 **Latest GitHub APK beta: 0.6.0-beta.1.** [Release page](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1). Official beta APKs are attached to releases marked **Pre-release**.
 
@@ -29,9 +31,18 @@ Screenshots: 1.0.0 (10) running on the Android emulator in portrait orientation.
 
 For long-press, RightPress first requests the target element's accessibility long-click action **when the mouse button is pressed**. If unsupported or rejected, it sends a touch long-press after release. Turn off `Instant action` to always use that fallback. Its duration is 400–1,200 ms, default 650 ms. Other right-click actions run on button down.
 
-## Install the beta
+## Install
 
-### Google Play internal test
+### Google Play release
+
+1. Open the [Google Play listing](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress) on Android 14 or later and install RightPress.
+2. Open RightPress → `Enable accessibility service`, read the disclosure and agree if you want to use the service.
+3. In Android accessibility settings, open **Installed apps** on Samsung devices, or **Downloaded apps** on other devices. Select the localized **RightPress input helper**, turn on **Use** and confirm **Allow**.
+4. Return to RightPress and configure the `Mouse` and `Keyboard` tabs.
+
+The 1.0.2 candidate adds a separate guide before opening Android settings from both the main connection button and Help. It uses the service name in the selected language. Saved consent is not requested again; canceling this guide changes neither settings nor the saved consent state. Supported settings screens may scroll to or highlight the service entry. Opening its detailed switch directly is not guaranteed. These guide changes are not yet in the public 1.0.0 release.
+
+### Earlier Google Play internal test
 
 1. Open the [test invitation](https://play.google.com/apps/internaltest/4701300851549043962) while signed in with a registered tester Google account. Access is limited to the five accounts in the existing beta list.
 2. Select **Accept invite**, then follow the Google Play installation link.
@@ -39,7 +50,7 @@ For long-press, RightPress first requests the target element's accessibility lon
 4. Open Android accessibility settings from the app and enable **RightPress input helper**.
 5. Return to RightPress and configure the `Mouse` and `Keyboard` tabs.
 
-The internal release is available to the five registered testers; this is not an open beta or a production release. On November 2, 2026, version 0.6.1-beta.1 (9) was downloaded from Play, installed and opened on a Galaxy XCover 5 (SM-G525N, Android 14). The test app was then uninstalled at the user’s request. Accessibility and external mouse/keyboard operation on that device were not tested. Play installation does not automatically grant accessibility access.
+The earlier internal test was limited to five registered testers and was not an open beta. On November 2, 2026, version 0.6.1-beta.1 (9) was downloaded from Play, installed and opened on a Galaxy XCover 5 (SM-G525N, Android 14). The test app was then uninstalled at the user’s request. Accessibility and external mouse/keyboard operation on that device were not tested. Play installation does not automatically grant accessibility access.
 
 A reported Play download failure on a Galaxy Tab A9 running Android 16 remains unresolved. Play showing an app as installed on the web does not verify its presence or launch on that device. The separate Android 16 emulator check installed a Play-signed APK through ADB; it did not verify a Play download or the main app screen because the Play licensing check redirected to the signed-out store.
 
@@ -85,7 +96,7 @@ Add a rule with `Keyboard → ＋ Add shortcut → Record key combination`, pres
 
 The accessibility service must remain enabled to handle input while you use other apps. Closing the settings screen does not stop it, and you do not need to keep the display on. On/off choices are saved. Android manages service startup and reconnection; after a restart or system restriction, check the service state in RightPress and Android accessibility settings. Uninterrupted background operation and battery impact have not been verified on every device.
 
-## Compatibility and beta scope
+## Compatibility and verification scope
 
 Mouse conversion uses a full-screen transparent accessibility overlay. Left clicks and drags are relayed as touch taps and swipes; the wheel becomes touch scrolling. Hover, precise dragging, text selection and multitouch can differ from normal mouse behavior. Turn off mouse conversion when those differences are disruptive; keyboard shortcuts can stay enabled.
 

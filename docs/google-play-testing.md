@@ -1,12 +1,14 @@
 # Google Play 테스트 배포
 
-현재 Play 내부 테스트 버전: **`0.6.1-beta.1` / versionCode `9`**. 2026-10-27 01:57 KST에 Console의 **내부 테스터에게 제공됨** 상태와 **검토되지 않음** 표시를 확인했다.
+이전 Play 내부 테스트 기록: **`0.6.1-beta.1` / versionCode `9`**. 2026-10-27 01:57 KST에 Console의 **내부 테스터에게 제공됨** 상태와 **검토되지 않음** 표시를 확인했다.
 
-[Google Play 테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 기존 `Stack Rush App Tester Beta` 목록의 등록 계정 5개만 참여할 수 있다. GitHub APK의 최신 공개 버전은 [0.6.0-beta.1](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)이다.
+[Google Play 테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 당시 기존 `Stack Rush App Tester Beta` 목록의 등록 계정 5개를 대상으로 배포했다. GitHub APK의 최신 공개 버전은 [0.6.0-beta.1](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)이다.
 
-프로덕션용 **1.0.0 (10)**은 2026-11-03 00:25 KST에 검토 요청이 접수됐고 제출 활동에 **검토 중**으로 표시됐다. 아직 정식 공개 전이다. 관리형 게시가 꺼져 있어 승인 후 자동 공개 예정이다. 현재 내부 테스트 배포와 구분한 [출시 기록](play-production-release.md)을 참조한다.
+정식 **1.0.0 (10)**은 2026-11-04 14:43 KST에 Console **출시됨**으로 확인됐다. [공개 스토어](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress)에서 테스트 참여 없이 설치할 수 있다. [출시 기록](play-production-release.md)을 참조한다.
 
-## 설치
+후속 **1.0.2 (12)**는 별도 접근성 설정 안내를 31개 로캘에 추가한 후보이며 아직 Play 업로드·심사 제출 전이다. 후보의 빌드·기기 검사 결과와 배포 상태는 별도로 기록한다.
+
+## 이전 내부 테스트 설치 절차
 
 1. 등록된 테스터 Google 계정으로 로그인한 상태에서 위 참여 링크를 연다.
 2. **Accept invite**로 초대를 수락한 뒤 Google Play 설치 링크를 따른다.
@@ -14,7 +16,7 @@
 4. 앱에서 Android 접근성 설정을 열어 **RightPress 입력 도우미**를 켠다.
 5. 앱으로 돌아와 마우스·키보드 기능을 설정한다.
 
-초대 페이지의 임시 이름은 `io.github.doctor_clawler.rightpress (unreviewed)`다. 지정된 5계정 대상 내부 테스트로, 공개 베타나 프로덕션 출시를 뜻하지 않는다.
+당시 초대 페이지의 임시 이름은 `io.github.doctor_clawler.rightpress (unreviewed)`였다. 지정된 5계정 대상 내부 테스트 기록이며, 이후 공개된 1.0.0 프로덕션 출시와 구분한다.
 
 2026-11-02 Galaxy XCover 5(SM-G525N, Android 14)에서 실제 Play 다운로드·설치·앱 첫 화면 실행을 확인했다. 패키지 관리자의 버전은 `0.6.1-beta.1 (9)`, 설치 출처는 `com.android.vending`이었다. 이후 사용자 요청으로 앱을 삭제하고 패키지·서비스가 남지 않은 것을 확인했다. 전원 설정은 상시 켜짐 OFF·화면 꺼짐 30초로 유지했다. 접근성 서비스 활성화·외장 입력 동작은 이 검사에 포함되지 않았다.
 
@@ -59,7 +61,7 @@ Play App Signing에 **기존 앱 서명키**를 등록했다. PEPK 암호화 파
 
 키 원본·암호·암호화한 키 파일은 저장소나 GitHub 릴리스에 올리지 않는다. 향후 서명 변경 시에도 앱 서명 인증서를 비교하며, 삭제 후 재설치를 업데이트 검증의 대체로 삼지 않는다.
 
-## 배포 검증 기록
+## code 9 내부 테스트 배포 검증 기록
 
 - 제출한 AAB SHA-256: `db33c990f7d69a8aad0ea819200426af9fbafd6dae96a911a0fc59efb0a439ac`.
 - Console이 AAB를 수락한 뒤 package `io.github.doctor_clawler.rightpress`, versionCode `9`, minSdk `34`, targetSdk `36`을 확인했다.
@@ -79,7 +81,10 @@ Play App Signing에 **기존 앱 서명키**를 등록했다. PEPK 암호화 파
 
 ## 접근성 설정
 
-RightPress 실행 → 접근성 설정 → 안내에 동의 → Android 접근성에서 RightPress 사용.
+공개된 1.0.0은 RightPress 실행 → 접근성 안내에 동의 → Android 접근성 설정에서 서비스를 켜는 흐름이다. 삼성은 **설치된 앱 → 현재 언어의 RightPress 입력 도우미 → 사용 ON → 허용**, 일반 기기는 **다운로드한 앱 → 서비스 → 사용 ON → 허용** 경로를 확인한다.
+
+1.0.2 후보는 메인 연결 버튼과 도움말 모두에서 시스템 설정을 열기 전에 별도 경로 안내를 보여준다. 서비스명은 현재 언어의 `service_name`을 사용한다. 기존 동의를 다시 요청하지 않고, 안내 취소는 설정·저장된 동의 상태를 변경하지 않는다. 목록 스크롤·강조는 지원하는 설정 화면에 전달하는 힌트이며 상세 스위치 화면으로 바로 열리는 것을 보장하지 않는다. 이 후보는 아직 업로드·제출 전이다.
+
 동의 없이 시스템 설정에서 먼저 서비스를 켜면 앱이 서비스를 종료한다.
 
 직접 받은 APK에서 '제한된 설정'이 표시되면 Android 앱 정보의 '제한된 설정 허용' 경로를 확인한다. Play Protect 해제나 `isAccessibilityTool=true` 허위 선언으로 제한을 우회하지 않는다. RightPress는 일반 마우스·키보드 유틸로 `isAccessibilityTool=false`를 유지한다.

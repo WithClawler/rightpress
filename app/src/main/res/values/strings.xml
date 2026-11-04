@@ -69,7 +69,10 @@
     <string name="launch_app_named">Launch app · %1$s</string>
     <string name="consent_title">Accessibility access</string>
     <string name="consent_body">RightPress uses the Accessibility API to handle mouse right-clicks and external keyboard shortcuts. It works while the service is enabled, even after you close the app screen.\n\nAccess and actions\n• Check screen element hierarchy, positions and supported actions\n• Receive key events and match them against your shortcuts\n• Convert right-clicks, clicks and wheel input to long presses, touch and scrolling\n• Run your selected Back, Home, notifications and app launch actions\n\nStorage and sharing\n• Never store screen content or input history\n• Store only settings and consent on this device\n• No external transmission or sharing\n\nYou can turn off the service at any time in Android accessibility settings.</string>
-    <string name="consent_accept">Agree and open settings</string>
+    <string name="consent_accept">Agree and continue</string>
+    <string name="accessibility_setup_title">Enable RightPress</string>
+    <string name="accessibility_setup_samsung_steps">1. Open Installed apps.\n2. Select %1$s.\n3. Turn on Use and confirm Allow.</string>
+    <string name="accessibility_setup_steps">1. Under Downloaded apps, open %1$s.\n2. Turn on Use and confirm Allow.</string>
     <string name="consent_save_failed">Could not save consent · try again</string>
     <string name="help_title">How to use</string>
     <string name="help_body">Running\n• Works in the background after accessibility is enabled\n• Keeps settings after you close the app screen\n• Stops if the service is disabled or the app is force-stopped\n\nMouse\n• Ctrl+Alt+R: toggle mouse mode only\n• Right-click: act on button press\n• Unsupported long press: touch on release\n• Clicks and wheel input: converted to touch\n• Dragging and direct touch may differ\n• Hover behavior is limited\n\nKeyboard\n• Supports Ctrl/Alt + key combinations\n• Some system shortcuts cannot be used\n\nData\n• Checks screen element positions and accessibility actions\n• Never stores or transmits screen content or input history\n• Settings stay on this device</string>

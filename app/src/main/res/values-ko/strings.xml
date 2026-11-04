@@ -67,7 +67,10 @@
     <string name="launch_app_named">앱 실행 · %1$s</string>
     <string name="consent_title">접근성 사용 안내</string>
     <string name="consent_body">RightPress는 접근성 API로 마우스 우클릭과 외장 키보드 단축키를 처리합니다. 앱 화면을 닫아도 서비스가 켜져 있으면 작동합니다.\n\n접근·실행\n• 화면 요소의 계층·위치·지원 동작 확인\n• 키 입력 이벤트를 받아 등록한 단축키와 비교\n• 우클릭·클릭·휠을 길게 누르기·터치·스크롤로 변환\n• 지정한 뒤로·홈·알림·앱 실행 동작 수행\n\n저장·전송\n• 화면 내용·입력 기록 저장 안 함\n• 설정과 동의 여부만 이 기기에 저장\n• 외부 전송·공유 없음\n\nAndroid 접근성 설정에서 언제든 서비스를 끌 수 있습니다.</string>
-    <string name="consent_accept">동의하고 설정 열기</string>
+    <string name="consent_accept">동의하고 계속</string>
+    <string name="accessibility_setup_title">RightPress 켜기</string>
+    <string name="accessibility_setup_samsung_steps">1. 설치된 앱을 엽니다.\n2. %1$s를 선택합니다.\n3. 사용을 켜고 허용을 누릅니다.</string>
+    <string name="accessibility_setup_steps">1. 다운로드한 앱에서 %1$s를 엽니다.\n2. 사용을 켜고 허용을 누릅니다.</string>
     <string name="consent_save_failed">동의 저장 실패 · 다시 시도</string>
     <string name="help_title">사용 안내</string>
     <string name="help_body">실행\n• 접근성 연결 후 백그라운드 작동\n• 앱 화면을 닫아도 설정 유지\n• 서비스 해제·강제 중지 시 중단\n\n마우스\n• Ctrl+Alt+R: 마우스만 켜기/끄기\n• 우클릭: 누르는 순간 실행\n• 길게 누르기 미지원: 버튼을 뗀 뒤 터치\n• 클릭·휠: 터치로 변환\n• 드래그·직접 터치 차이 가능\n• 마우스 오버 동작 제한\n\n키보드\n• Ctrl/Alt + 키 조합 지원\n• 일부 시스템 단축키 사용 불가\n\n정보 처리\n• 화면 요소 위치·접근성 동작 확인\n• 화면 내용·입력 기록 저장·전송 안 함\n• 설정은 이 기기에만 저장</string>

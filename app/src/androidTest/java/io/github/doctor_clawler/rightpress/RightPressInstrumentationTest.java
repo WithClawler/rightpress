@@ -1,6 +1,7 @@
 package io.github.doctor_clawler.rightpress;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Instrumentation;
 import android.app.LocaleManager;
@@ -282,6 +283,9 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
             uiClickText(arabic.getString(R.string.accessibility_settings));
             uiClickText(arabic.getString(R.string.consent_accept));
             assertTrue("Localized Agree must record the same consent version", AccessibilityConsent.isAccepted(context));
+            uiAssertText(arabic.getString(R.string.accessibility_setup_title));
+            assertEquals("The localized guide precedes Android settings", 0, monitor.getHits());
+            uiClickText(arabic.getString(R.string.accessibility_settings));
             assertEquals("The translated flow must open accessibility settings exactly once", 1, monitor.getHits());
             assertEquals("A translated consent flow must preserve input settings", settings,
                     context.getSharedPreferences("settings", Context.MODE_PRIVATE).getAll());
@@ -324,20 +328,101 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         try {
             showConsentFromHelp();
             assertFalse("Showing the disclosure is not acceptance", AccessibilityConsent.isAccepted(instrumentation.getTargetContext()));
-            uiClickText("동의하고 설정 열기");
+            uiClickText("동의하고 계속");
             assertTrue("The affirmative button must persist current consent", AccessibilityConsent.isAccepted(instrumentation.getTargetContext()));
-            assertEquals("Acceptance opens Android settings once", 1, monitor.getHits());
+            uiAssertText(activity.getString(R.string.accessibility_setup_title));
+            assertEquals("Consent leads to the setup guide before leaving the app", 0, monitor.getHits());
+            uiClickText("접근성 설정");
+            assertEquals("The guide opens Android settings once", 1, monitor.getHits());
             assertEquals("Accepting must preserve existing input settings", settings, instrumentation.getTargetContext()
                     .getSharedPreferences("settings", Context.MODE_PRIVATE).getAll());
             launchActivity();
             assertTrue("Consent survives activity recreation", AccessibilityConsent.isAccepted(instrumentation.getTargetContext()));
             uiClickText("도움말");
             uiClickText("접근성 설정");
-            assertEquals("Current consent allows subsequent settings access", 2, monitor.getHits());
             assertNull("Valid consent is not requested again", uiTextBounds("접근성 사용 안내", false));
+            uiAssertText(activity.getString(R.string.accessibility_setup_title));
+            uiClickText("접근성 설정");
+            assertEquals("Current consent allows subsequent settings access through the guide", 2, monitor.getHits());
         } finally {
             instrumentation.removeMonitor(monitor);
             assertTrue(AccessibilityConsent.accept(instrumentation.getTargetContext()));
+        }
+    }
+
+    public void testAccessibilitySetupCancelAndBackPreserveConsentAndSettings() {
+        Context context = instrumentation.getTargetContext();
+        Map<String, ?> settings = context.getSharedPreferences("settings", Context.MODE_PRIVATE).getAll();
+        Map<String, ?> consent = context.getSharedPreferences(AccessibilityConsent.PREFERENCES, Context.MODE_PRIVATE).getAll();
+        Instrumentation.ActivityMonitor monitor = blockAccessibilitySettings();
+        try {
+            uiClickText("도움말");
+            uiClickText("접근성 설정");
+            uiAssertText(activity.getString(R.string.accessibility_setup_title));
+            uiClickText("취소");
+            uiClickText("도움말");
+            uiClickText("접근성 설정");
+            uiAssertText(activity.getString(R.string.accessibility_setup_title));
+            instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
+            instrumentation.waitForIdleSync();
+            assertEquals("Dismissing the guide must not open Android settings", 0, monitor.getHits());
+            assertEquals(settings, context.getSharedPreferences("settings", Context.MODE_PRIVATE).getAll());
+            assertEquals(consent, context.getSharedPreferences(AccessibilityConsent.PREFERENCES, Context.MODE_PRIVATE).getAll());
+        } finally {
+            instrumentation.removeMonitor(monitor);
+        }
+    }
+
+    public void testAccessibilitySetupGuideInEveryLocale() throws Exception {
+        Context context = instrumentation.getTargetContext();
+        Instrumentation.ActivityMonitor monitor = blockAccessibilitySettings();
+        Instrumentation.ActivityMonitor activities = instrumentation.addMonitor(MainActivity.class.getName(), null, false);
+        Field field = MainActivity.class.getDeclaredField("accessibilitySetupDialog");
+        field.setAccessible(true);
+        try {
+            for (String tag : AppLanguage.supportedTags(context)) {
+                AppLanguage.apply(context, tag);
+                launchActivity();
+                waitForAppLanguage(tag);
+                uiClickText(activity.getString(R.string.help));
+                uiClickText(activity.getString(R.string.accessibility_settings));
+                uiAssertText(activity.getString(R.string.accessibility_setup_title));
+                instrumentation.runOnMainSync(() -> {
+                    // A locale change can recreate the activity after startActivitySync.
+                    // Inspect the current window owner and all View state on its UI thread.
+                    activity = (MainActivity) activities.getLastActivity();
+                    assertNotNull(tag + ": current activity", activity);
+                    AlertDialog dialog;
+                    try { dialog = (AlertDialog) field.get(activity); }
+                    catch (IllegalAccessException inaccessible) { throw new AssertionError(inaccessible); }
+                    assertNotNull(tag + ": setup guide is visible", dialog);
+                    TextView message = dialog.findViewById(android.R.id.message);
+                    assertTrue(tag + ": guide must name the localized service",
+                            message.getText().toString().contains(activity.getString(R.string.service_name)));
+                    assertTrue(tag + ": all guide controls must remain readable",
+                            assertTextGeometry(dialog.getWindow().getDecorView(), tag + "/setup") >= 4);
+                    for (int button : new int[]{AlertDialog.BUTTON_POSITIVE, AlertDialog.BUTTON_NEGATIVE}) {
+                        Rect visible = new Rect();
+                        assertTrue(tag + ": guide action is visible", dialog.getButton(button).getGlobalVisibleRect(visible));
+                        assertTrue(tag + ": guide action is inside the screen",
+                                activity.getWindowManager().getCurrentWindowMetrics().getBounds().contains(visible));
+                    }
+                });
+                if (List.of("ko", "de", "ar", "ta").contains(tag)) {
+                    SystemClock.sleep(400);
+                    Bitmap screenshot = automation.takeScreenshot();
+                    assertNotNull(screenshot);
+                    File file = new File(context.getCacheDir(), "l10n-" + tag + "-setup.png");
+                    try (FileOutputStream output = new FileOutputStream(file)) {
+                        assertTrue(screenshot.compress(Bitmap.CompressFormat.PNG, 100, output));
+                    } finally { screenshot.recycle(); }
+                }
+                uiClickText(activity.getString(R.string.cancel));
+            }
+            assertEquals("Reading or cancelling a guide must never launch Android settings", 0, monitor.getHits());
+        } finally {
+            instrumentation.removeMonitor(monitor);
+            instrumentation.removeMonitor(activities);
         }
     }
 

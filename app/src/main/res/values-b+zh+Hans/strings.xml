@@ -66,7 +66,10 @@
     <string name="launch_app_named">启动应用 · %1$s</string>
     <string name="consent_title">无障碍访问说明</string>
     <string name="consent_body">RightPress 使用无障碍 API 处理鼠标右键点击和外接键盘快捷键。只要服务处于开启状态，即使关闭应用界面，也会继续运行。\n\n访问与操作\n• 检查屏幕元素的层级、位置及支持的操作\n• 接收按键事件并与已设置的快捷键进行匹配\n• 将右键点击、点击及滚轮输入转换为长按、触摸及滚动\n• 执行您指定的返回、主屏幕、通知及启动应用操作\n\n存储与共享\n• 不保存屏幕内容或输入记录\n• 仅在此设备上保存设置及同意状态\n• 不对外传输或共享\n\n您可以随时在 Android 无障碍设置中关闭服务。</string>
-    <string name="consent_accept">同意并打开设置</string>
+    <string name="consent_accept">同意并继续</string>
+    <string name="accessibility_setup_title">启用 RightPress</string>
+    <string name="accessibility_setup_samsung_steps">1. 打开已安装的应用。\n2. 选择 %1$s。\n3. 开启使用，然后点按允许。</string>
+    <string name="accessibility_setup_steps">1. 在已下载的应用中打开 %1$s。\n2. 开启使用，然后点按允许。</string>
     <string name="consent_save_failed">无法保存同意状态 · 请重试</string>
     <string name="help_title">使用说明</string>
     <string name="help_body">运行\n• 连接无障碍服务后在后台运行\n• 关闭应用界面后仍保留设置\n• 关闭服务或强行停止应用后停止运行\n\n鼠标\n• Ctrl+Alt+R：仅切换鼠标模式\n• 右键点击：按下时立即执行\n• 不支持长按时：松开按钮后模拟触摸\n• 点击及滚轮输入：转换为触摸\n• 拖动及直接触摸的效果可能不同\n• 悬停操作受限\n\n键盘\n• 支持 Ctrl/Alt + 按键组合\n• 部分系统快捷键不可用\n\n数据\n• 检查屏幕元素位置及无障碍操作\n• 不保存或传输屏幕内容及输入记录\n• 设置仅保存在此设备上</string>

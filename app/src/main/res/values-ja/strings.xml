@@ -66,7 +66,10 @@
     <string name="launch_app_named">アプリ起動 · %1$s</string>
     <string name="consent_title">ユーザー補助の利用について</string>
     <string name="consent_body">RightPress はユーザー補助 API を使用して、マウスの右クリックと外付けキーボードのショートカットを処理します。サービスが有効であれば、アプリ画面を閉じても動作します。\n\nアクセス・実行\n• 画面要素の階層・位置・対応する動作を確認\n• キー入力イベントを受け取り、登録したショートカットと照合\n• 右クリック・クリック・ホイールを長押し・タッチ・スクロールに変換\n• 指定した戻る・ホーム・通知・アプリ起動の動作を実行\n\n保存・共有\n• 画面内容・入力履歴は保存しません\n• 設定と同意状況のみをこの端末に保存します\n• 外部への送信・共有はありません\n\nAndroid のユーザー補助設定で、いつでもサービスを無効にできます。</string>
-    <string name="consent_accept">同意して設定を開く</string>
+    <string name="consent_accept">同意して続行</string>
+    <string name="accessibility_setup_title">RightPress を有効にする</string>
+    <string name="accessibility_setup_samsung_steps">1. インストール済みアプリを開きます。\n2. %1$s を選びます。\n3. 使用をオンにして、許可を押します。</string>
+    <string name="accessibility_setup_steps">1. ダウンロードしたアプリから %1$s を開きます。\n2. 使用をオンにして、許可を押します。</string>
     <string name="consent_save_failed">同意を保存できません · 再試行してください</string>
     <string name="help_title">使い方</string>
     <string name="help_body">実行\n• ユーザー補助の接続後、バックグラウンドで動作\n• アプリ画面を閉じても設定を保持\n• サービスの無効化・強制停止で中断\n\nマウス\n• Ctrl+Alt+R：マウスモードのみ切り替え\n• 右クリック：押した瞬間に実行\n• 長押し非対応：ボタンを離してからタッチ\n• クリック・ホイール：タッチに変換\n• ドラッグ・直接タッチとは動作が異なる場合あり\n• マウスオーバーの動作に制限あり\n\nキーボード\n• Ctrl/Alt + キーの組み合わせに対応\n• 一部のシステムショートカットは使用不可\n\nデータ\n• 画面要素の位置・ユーザー補助の動作を確認\n• 画面内容・入力履歴の保存・送信なし\n• 設定はこの端末のみに保存</string>

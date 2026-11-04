@@ -1,17 +1,28 @@
 # Changelog
 
-## 1.0.1 (versionCode 11) — built, not yet uploaded to Google Play
+## 1.0.2 (versionCode 12) — candidate, not yet uploaded or submitted to Google Play
 
-- Open Android accessibility settings scrolled to RightPress with its entry highlighted, so the service is easy to find.
+- Add a separate accessibility setup guide in all 31 locales before opening system settings from the main connection button or Help.
+- Show the Samsung Installed apps path or the general Downloaded apps path with the localized service name.
+- Keep first-use consent separate from setup instructions. Existing consent is not requested again; canceling the guide does not change settings or saved consent.
+- Retain the supported-settings hint to scroll to or highlight the service entry. A direct jump to its detailed switch is not guaranteed.
 
-## 1.0.0 — submitted for production review (2026-11-03)
+The signed candidate passed lint (0 errors), 38 regression tests on an Android 16 emulator, and a further 31-locale guide check at 360×640 with 1.3× text. It is not yet uploaded or submitted; physical-device setup and Play delivery are separate checks.
+
+## 1.0.1 (versionCode 11) — earlier unreleased candidate
+
+- Add a hint for supported Android settings screens to scroll to and highlight the RightPress service entry. It does not guarantee opening the detailed switch.
+
+This candidate was not uploaded to Google Play and is superseded by 1.0.2.
+
+## 1.0.0 — Google Play production release (2026-11-04)
 
 - Add a privacy-policy link to the in-app help in all 31 locales.
 - Display the installed app version and keep help readable on narrow screens with larger text.
 - Prepare Korean and English Play descriptions, current app screenshots and an accessibility disclosure demonstration.
 - Keep the package, signing certificate, Android 14 minimum and input behavior unchanged.
 
-Google Play accepted versionCode 10 for production review at 00:25 KST on November 3, 2026. Submission 1 includes the production release, Korean and English store listings, app content and store settings; its status is **In review**. It has not been approved or publicly released. Managed publishing is off, so publication is set to proceed after approval. See the [release record](docs/play-production-release.md).
+Google Play accepted versionCode 10 for production review at 00:25 KST on November 3, 2026. Submission 1 included the production release, Korean and English store listings, app content and store settings. The Console records it as **Published** at 14:43 KST on November 4, 2026; the [public store listing](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress) offers installation without test enrollment. See the [release record](docs/play-production-release.md).
 
 ## 0.6.1-beta.1 — Google Play internal test (2026-10-27)
 
@@ -22,7 +33,7 @@ Google Play accepted versionCode 10 for production review at 00:25 KST on Novemb
 - Publish versionCode 9 to the Google Play internal track for the five registered beta tester accounts. [Test invitation](https://play.google.com/apps/internaltest/4701300851549043962).
 - Enroll the existing app signing key in Play App Signing and verify that the Play app signing certificate matches the official GitHub APK certificate.
 
-The Console reports the release as available to internal testers and unreviewed. The invitation currently uses the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`; opening it with a registered account was verified. A later 2026-11-02 check downloaded, installed and opened this version through Play on an Android 14 XCover 5; the test app was then removed. Physical-tablet accessibility remains unverified. Play installation does not automatically grant accessibility access or establish standard policy approval. The latest GitHub APK release remains 0.6.0-beta.1.
+The Console initially reported the release as available to internal testers and unreviewed. The invitation used the temporary name `io.github.doctor_clawler.rightpress (unreviewed)`; opening it with a registered account was verified. A later 2026-11-02 check downloaded, installed and opened this version through Play on an Android 14 XCover 5; the test app was then removed. Physical-tablet accessibility remains unverified. Play installation does not automatically grant accessibility access or establish standard policy approval. The latest GitHub APK release remains 0.6.0-beta.1.
 
 ## 0.6.0-beta.1
 

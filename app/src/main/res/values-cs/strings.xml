@@ -66,7 +66,10 @@
     <string name="launch_app_named">Spustit aplikaci · %1$s</string>
     <string name="consent_title">Přístup prostřednictvím přístupnosti</string>
     <string name="consent_body">RightPress využívá rozhraní API přístupnosti ke zpracování kliknutí pravým tlačítkem myši a zkratek externí klávesnice. Funguje, dokud je služba zapnutá, i po zavření obrazovky aplikace.\n\nPřístup a akce\n• Kontrola hierarchie, poloh a podporovaných akcí prvků na obrazovce\n• Příjem událostí kláves a porovnání s vašimi zkratkami\n• Převod kliknutí pravým tlačítkem, kliknutí a kolečka na dlouhá stisknutí, dotyky a posouvání\n• Provádění zvolených akcí Zpět, Domů, oznámení a spuštění aplikací\n\nUkládání a sdílení\n• Obsah obrazovky ani historie vstupů se nikdy neukládají\n• Na tomto zařízení se ukládají jen nastavení a souhlas\n• Žádný přenos ani sdílení mimo zařízení\n\nSlužbu můžete kdykoli vypnout v nastavení přístupnosti systému Android.</string>
-    <string name="consent_accept">Souhlasit a otevřít nastavení</string>
+    <string name="consent_accept">Souhlasit a pokračovat</string>
+    <string name="accessibility_setup_title">Zapnout RightPress</string>
+    <string name="accessibility_setup_samsung_steps">1. Otevřete Nainstalované aplikace.\n2. Vyberte %1$s.\n3. Zapněte Použít a potvrďte tlačítkem Povolit.</string>
+    <string name="accessibility_setup_steps">1. Ve Stažených aplikacích otevřete %1$s.\n2. Zapněte Použít a potvrďte tlačítkem Povolit.</string>
     <string name="consent_save_failed">Souhlas se nepodařilo uložit · zkuste to znovu</string>
     <string name="help_title">Jak používat</string>
     <string name="help_body">Provoz\n• Po zapnutí přístupnosti funguje na pozadí\n• Zachová nastavení po zavření obrazovky aplikace\n• Zastaví se při vypnutí služby nebo vynuceném zastavení aplikace\n\nMyš\n• Ctrl+Alt+R: zapnutí/vypnutí pouze režimu myši\n• Pravé tlačítko: provedení při stisknutí\n• Dlouhé stisknutí není podporováno: dotyk po uvolnění\n• Kliknutí a kolečko: převod na dotyky\n• Přetažení a přímý dotyk se mohou lišit\n• Chování při přejetí ukazatelem je omezené\n\nKlávesnice\n• Podporuje kombinace Ctrl/Alt + klávesa\n• Některé systémové zkratky nelze použít\n\nData\n• Kontroluje polohy prvků a akce přístupnosti\n• Neukládá ani nepřenáší obsah obrazovky nebo historii vstupů\n• Nastavení zůstává na tomto zařízení</string>

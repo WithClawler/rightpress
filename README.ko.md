@@ -2,9 +2,9 @@
 
 **Android 14 이상** 마우스 버튼·외장 키보드 단축키 유틸리티.
 
-- Google Play 내부 베타: **0.6.1-beta.1 (9)**. [테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 기존 명단의 등록 계정 5개만 참여 가능.
-- 현재 초대 페이지 표시명: `io.github.doctor_clawler.rightpress (unreviewed)`. 일반 심사 전 임시 이름.
-- 정식 출시 심사: **1.0.0 (10)**. 2026-11-03 00:25 KST 검토 요청 접수·**검토 중**. 아직 공개 전이며 관리형 게시가 꺼져 있어 승인 후 자동 공개 예정. [출시 기록](docs/play-production-release.md).
+- Google Play 정식 출시: **1.0.0 (10)**. [스토어에서 설치](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress). Console 출시 시각은 2026-11-04 14:43 KST이며 테스트 참여 없이 공개 스토어에서 설치 가능. [출시 기록](docs/play-production-release.md).
+- 후속 후보: **1.0.2 (12)**. 31개 로캘에 별도 접근성 설정 경로 안내 추가. 아직 Play 업로드·심사 제출 전.
+- 이전 내부 테스트 기록: **0.6.1-beta.1 (9)**. [테스트 참여 링크](https://play.google.com/apps/internaltest/4701300851549043962)는 등록 계정 5개 대상. 당시 임시 표시명은 `io.github.doctor_clawler.rightpress (unreviewed)`.
 - GitHub APK 베타: **0.6.0-beta.1**. [출시 페이지](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)에서 다운로드.
 - 앱 표시 언어: **30개 언어·31개 로캘**. 중국어 간체·번체 포함.
 
@@ -29,9 +29,18 @@
 
 길게 누르기: **버튼을 누르는 순간** 포인터 아래 요소에 접근성 롱클릭 요청. 미지원·거절 시 버튼을 뗀 뒤 터치 롱프레스. `즉시 실행`을 끄면 항상 버튼을 뗀 뒤 실행. 호환 터치 시간은 기본 650ms, 범위 400~1200ms. 나머지 우클릭 동작은 누를 때 실행.
 
-## 베타 설치
+## 설치
 
-### Google Play 내부 테스트
+### Google Play 정식 버전
+
+1. Android 14 이상 기기에서 [Google Play 스토어](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress)를 열고 RightPress 설치.
+2. RightPress 실행 → `접근성 서비스 켜기` → 사용 안내 확인 → 동의.
+3. Android 접근성 설정에서 삼성은 **설치된 앱**, 일반 기기는 **다운로드한 앱** → 현재 언어의 **RightPress 입력 도우미** → **사용** 켜기 → **허용**.
+4. 앱 복귀 → `마우스`·`키보드` 탭 설정.
+
+1.0.2 후보는 메인 연결 버튼과 도움말에서 Android 설정을 열기 전에 별도 경로 안내를 보여준다. 서비스명은 현재 언어로 표시한다. 기존 동의를 다시 요청하지 않으며 안내 취소는 설정·저장된 동의 상태를 바꾸지 않는다. 지원하는 설정 화면에서 목록 스크롤·강조를 요청하지만 상세 스위치 화면으로 바로 열리는 것을 보장하지 않는다. 이 안내 변경은 공개된 1.0.0에는 아직 포함되지 않았다.
+
+### 이전 Google Play 내부 테스트
 
 1. 등록된 테스터 Google 계정으로 로그인한 상태에서 [테스트 초대 링크](https://play.google.com/apps/internaltest/4701300851549043962) 열기. 기존 베타 명단의 5개 계정만 참여 가능.
 2. **Accept invite**로 초대 수락 → Google Play 설치 링크로 이동 → 설치.
@@ -39,7 +48,7 @@
 4. 앱에서 Android 접근성 설정 열기 → **RightPress 입력 도우미** 켜기.
 5. 앱 복귀 → `마우스`·`키보드` 탭 설정.
 
-지정된 5계정 대상 내부 테스트이며 공개 베타·정식 출시 상태는 아님. 2026-11-02 Galaxy XCover 5(SM-G525N, Android 14)에서 0.6.1-beta.1 (9)의 실제 Play 다운로드·설치·앱 첫 화면 실행 확인. 사용자 요청으로 테스트 앱 삭제 완료. 해당 기기의 접근성·외장 마우스·키보드 동작은 미검증. Play에서 설치해도 접근성 권한은 직접 허용해야 함.
+당시 내부 테스트는 지정된 5계정 대상이었으며 공개 베타가 아니었음. 2026-11-02 Galaxy XCover 5(SM-G525N, Android 14)에서 0.6.1-beta.1 (9)의 실제 Play 다운로드·설치·앱 첫 화면 실행 확인. 사용자 요청으로 테스트 앱 삭제 완료. 해당 기기의 접근성·외장 마우스·키보드 동작은 미검증. Play에서 설치해도 접근성 권한은 직접 허용해야 함.
 
 Galaxy Tab A9(Android 16)의 Play 다운로드 실패는 원인 미확정. Play 웹의 ‘이미 설치됨’ 표시는 기기 내 앱 존재·실행 확인과 별개. 별도 Android 16 에뮬레이터에서는 Play 서명 APK를 ADB로 설치했으나, Play 다운로드를 검증한 것은 아님. 로그인되지 않은 Play 스토어로 라이선스 확인이 이어져 앱 첫 화면 실행도 검증하지 못함.
 
