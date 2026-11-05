@@ -29,6 +29,7 @@
     <string name="fallback_duration_accessibility">호환 터치 유지 시간</string>
     <string name="fallback_duration">호환 터치: %1$dms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">휠 스크롤 양</string>
     <string name="mouse_toggle">마우스 변환 켜기 / 끄기</string>
     <string name="independent_keyboard_hint">키보드 단축키와 별도 작동</string>
     <string name="keyboard_shortcuts">키보드 단축키</string>

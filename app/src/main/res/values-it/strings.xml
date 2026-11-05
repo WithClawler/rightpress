@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Durata del tocco di compatibilità</string>
     <string name="fallback_duration">Tocco di compatibilità: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Ampiezza dello scorrimento con la rotellina</string>
     <string name="mouse_toggle">Attiva/disattiva riassegnazione mouse</string>
     <string name="independent_keyboard_hint">Indipendente dalle scorciatoie da tastiera</string>
     <string name="keyboard_shortcuts">Scorciatoie da tastiera</string>

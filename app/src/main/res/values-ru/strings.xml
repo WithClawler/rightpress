@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Длительность запасного касания</string>
     <string name="fallback_duration">Запасное касание: %1$d мс</string>
     <string name="duration_ms">%1$d мс</string>
+    <string name="wheel_scroll_amount">Длина прокрутки колёсиком</string>
     <string name="mouse_toggle">Переключить переназначение мыши</string>
     <string name="independent_keyboard_hint">Независимо от сочетаний клавиш</string>
     <string name="keyboard_shortcuts">Сочетания клавиш</string>

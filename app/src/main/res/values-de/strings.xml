@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Dauer der Ersatzberührung</string>
     <string name="fallback_duration">Ersatzberührung: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Scrollstrecke des Mausrads</string>
     <string name="mouse_toggle">Mausbelegung ein-/ausschalten</string>
     <string name="independent_keyboard_hint">Unabhängig von Tastenkürzeln</string>
     <string name="keyboard_shortcuts">Tastenkürzel</string>

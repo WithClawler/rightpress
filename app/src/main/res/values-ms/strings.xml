@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Tempoh sentuhan gantian</string>
     <string name="fallback_duration">Sentuhan gantian: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Jarak tatal roda tetikus</string>
     <string name="mouse_toggle">Hidupkan/matikan perubahan fungsi tetikus</string>
     <string name="independent_keyboard_hint">Berfungsi berasingan daripada pintasan papan kekunci</string>
     <string name="keyboard_shortcuts">Pintasan papan kekunci</string>

@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">مدة اللمس البديل</string>
     <string name="fallback_duration">اللمس البديل: %1$d مللي ثانية</string>
     <string name="duration_ms">%1$d مللي ثانية</string>
+    <string name="wheel_scroll_amount">مقدار التمرير بعجلة الفأرة</string>
     <string name="mouse_toggle">تبديل إعادة تعيين الفأرة</string>
     <string name="independent_keyboard_hint">يعمل مستقلًا عن اختصارات لوحة المفاتيح</string>
     <string name="keyboard_shortcuts">اختصارات لوحة المفاتيح</string>

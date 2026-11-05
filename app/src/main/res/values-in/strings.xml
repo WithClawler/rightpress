@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Durasi sentuhan pengganti</string>
     <string name="fallback_duration">Sentuhan pengganti: %1$d md</string>
     <string name="duration_ms">%1$d md</string>
+    <string name="wheel_scroll_amount">Jarak gulir roda mouse</string>
     <string name="mouse_toggle">Aktifkan/nonaktifkan perubahan fungsi mouse</string>
     <string name="independent_keyboard_hint">Terpisah dari pintasan keyboard</string>
     <string name="keyboard_shortcuts">Pintasan keyboard</string>

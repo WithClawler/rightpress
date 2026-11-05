@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Thời gian chạm thay thế</string>
     <string name="fallback_duration">Chạm thay thế: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Khoảng cuộn bằng con lăn chuột</string>
     <string name="mouse_toggle">Bật/tắt gán lại thao tác chuột</string>
     <string name="independent_keyboard_hint">Hoạt động độc lập với phím tắt</string>
     <string name="keyboard_shortcuts">Phím tắt bàn phím</string>

@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">مدت لمس جایگزین</string>
     <string name="fallback_duration">لمس جایگزین: %1$d میلی‌ثانیه</string>
     <string name="duration_ms">%1$d میلی‌ثانیه</string>
+    <string name="wheel_scroll_amount">میزان پیمایش با چرخ ماوس</string>
     <string name="mouse_toggle">روشن/خاموش کردن تغییر عملکرد ماوس</string>
     <string name="independent_keyboard_hint">مستقل از میانبرهای صفحه‌کلید کار می‌کند</string>
     <string name="keyboard_shortcuts">میانبرهای صفحه‌کلید</string>

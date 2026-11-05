@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Délka náhradního dotyku</string>
     <string name="fallback_duration">Náhradní dotyk: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Délka posunu kolečkem</string>
     <string name="mouse_toggle">Zapnout/vypnout přemapování myši</string>
     <string name="independent_keyboard_hint">Funguje nezávisle na klávesových zkratkách</string>
     <string name="keyboard_shortcuts">Klávesové zkratky</string>

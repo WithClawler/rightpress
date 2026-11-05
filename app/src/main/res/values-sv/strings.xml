@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Längd på ersättande beröring</string>
     <string name="fallback_duration">Ersättande beröring: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Rullningsavstånd med mushjulet</string>
     <string name="mouse_toggle">Slå på/av musmappning</string>
     <string name="independent_keyboard_hint">Fungerar oberoende av kortkommandon</string>
     <string name="keyboard_shortcuts">Kortkommandon</string>

@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Tagal ng pamalit na pag-tap</string>
     <string name="fallback_duration">Pamalit na pag-tap: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Dami ng pag-scroll gamit ang gulong</string>
     <string name="mouse_toggle">I-on/i-off ang pagbabago ng kilos ng mouse</string>
     <string name="independent_keyboard_hint">Hiwalay sa mga shortcut sa keyboard</string>
     <string name="keyboard_shortcuts">Mga shortcut sa keyboard</string>

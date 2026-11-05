@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">替代觸控持續時間</string>
     <string name="fallback_duration">替代觸控：%1$d 毫秒</string>
     <string name="duration_ms">%1$d 毫秒</string>
+    <string name="wheel_scroll_amount">滾輪捲動量</string>
     <string name="mouse_toggle">開啟／關閉滑鼠對應</string>
     <string name="independent_keyboard_hint">獨立於鍵盤快捷鍵運作</string>
     <string name="keyboard_shortcuts">鍵盤快捷鍵</string>

@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">ระยะเวลาสัมผัสทดแทน</string>
     <string name="fallback_duration">สัมผัสทดแทน: %1$d มิลลิวินาที</string>
     <string name="duration_ms">%1$d มิลลิวินาที</string>
+    <string name="wheel_scroll_amount">ระยะเลื่อนด้วยล้อเมาส์</string>
     <string name="mouse_toggle">เปิด / ปิดการแปลงเมาส์</string>
     <string name="independent_keyboard_hint">ทำงานแยกจากแป้นพิมพ์ลัด</string>
     <string name="keyboard_shortcuts">แป้นพิมพ์ลัด</string>

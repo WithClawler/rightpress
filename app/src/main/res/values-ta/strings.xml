@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">மாற்றுத் தொடுதலின் கால அளவு</string>
     <string name="fallback_duration">மாற்றுத் தொடுதல்: %1$d மி.வி.</string>
     <string name="duration_ms">%1$d மி.வி.</string>
+    <string name="wheel_scroll_amount">மவுஸ் சக்கர உருட்டல் அளவு</string>
     <string name="mouse_toggle">மவுஸ் மாற்றத்தை இயக்கு / நிறுத்து</string>
     <string name="independent_keyboard_hint">விசைப்பலகைக் குறுக்குவிசைகளிலிருந்து தனியாக இயங்கும்</string>
     <string name="keyboard_shortcuts">விசைப்பலகைக் குறுக்குவிசைகள்</string>

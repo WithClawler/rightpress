@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">বিকল্প স্পর্শের সময়কাল</string>
     <string name="fallback_duration">বিকল্প স্পর্শ: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">মাউস হুইলে স্ক্রলের পরিমাণ</string>
     <string name="mouse_toggle">মাউসের কাজ বদল চালু/বন্ধ</string>
     <string name="independent_keyboard_hint">কীবোর্ড শর্টকাটের থেকে স্বাধীনভাবে কাজ করে</string>
     <string name="keyboard_shortcuts">কীবোর্ড শর্টকাট</string>

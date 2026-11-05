@@ -17,6 +17,8 @@ import java.util.Set;
 /** Local settings only: no recorded input, text injection, scripts or network. */
 public final class ShortcutStore {
     static final int MODIFIER_MASK = KeyEvent.META_CTRL_ON | KeyEvent.META_ALT_ON | KeyEvent.META_SHIFT_ON;
+    static final int WHEEL_SCROLL_MIN = 10, WHEEL_SCROLL_MAX = 100, WHEEL_SCROLL_STEP = 10;
+    static final int WHEEL_SCROLL_DEFAULT = 30;
     private static final String RULES_KEY = "shortcut_rules";
     private static final Object RULES_LOCK = new Object();
     private final Context context;
@@ -103,6 +105,23 @@ public final class ShortcutStore {
         if (!ActionCatalog.isMouseAction(actionId)) throw new IllegalArgumentException(context.getString(R.string.error_mouse_action));
         preferences.edit().putString("mouse_action", actionId).apply();
         notifyChanged();
+    }
+
+    public int getWheelScrollPercent() {
+        try {
+            return normalizeWheelScroll(preferences.getInt("wheel_scroll_percent", WHEEL_SCROLL_DEFAULT));
+        } catch (ClassCastException ex) {
+            return WHEEL_SCROLL_DEFAULT;
+        }
+    }
+
+    public void setWheelScrollPercent(int percent) {
+        preferences.edit().putInt("wheel_scroll_percent", normalizeWheelScroll(percent)).apply();
+    }
+
+    private static int normalizeWheelScroll(int percent) {
+        int bounded = Math.max(WHEEL_SCROLL_MIN, Math.min(WHEEL_SCROLL_MAX, percent));
+        return Math.round(bounded / (float) WHEEL_SCROLL_STEP) * WHEEL_SCROLL_STEP;
     }
 
     public static int modifiersOf(KeyEvent event) {

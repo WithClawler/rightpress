@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">代替タッチの保持時間</string>
     <string name="fallback_duration">代替タッチ：%1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">ホイールのスクロール量</string>
     <string name="mouse_toggle">マウス変換のオン／オフ</string>
     <string name="independent_keyboard_hint">キーボードショートカットとは個別に動作</string>
     <string name="keyboard_shortcuts">キーボードショートカット</string>

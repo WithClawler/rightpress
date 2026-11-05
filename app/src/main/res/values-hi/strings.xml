@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">वैकल्पिक टच की अवधि</string>
     <string name="fallback_duration">वैकल्पिक टच: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">माउस व्हील स्क्रॉल की मात्रा</string>
     <string name="mouse_toggle">माउस का बदला हुआ काम चालू/बंद करें</string>
     <string name="independent_keyboard_hint">कीबोर्ड शॉर्टकट से स्वतंत्र रूप से काम करता है</string>
     <string name="keyboard_shortcuts">कीबोर्ड शॉर्टकट</string>

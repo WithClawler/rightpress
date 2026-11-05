@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Duur van vervangende aanraking</string>
     <string name="fallback_duration">Vervangende aanraking: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Scrollafstand van het muiswiel</string>
     <string name="mouse_toggle">Muistoewijzing aan/uit</string>
     <string name="independent_keyboard_hint">Werkt onafhankelijk van sneltoetsen</string>
     <string name="keyboard_shortcuts">Sneltoetsen</string>

@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">पर्यायी स्पर्शाचा कालावधी</string>
     <string name="fallback_duration">पर्यायी स्पर्श: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">माउस व्हीलने स्क्रोल करण्याचे प्रमाण</string>
     <string name="mouse_toggle">माऊसचे बदललेले काम चालू/बंद करा</string>
     <string name="independent_keyboard_hint">कीबोर्ड शॉर्टकटपासून स्वतंत्रपणे काम करते</string>
     <string name="keyboard_shortcuts">कीबोर्ड शॉर्टकट</string>

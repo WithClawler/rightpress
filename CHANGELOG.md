@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add a wheel scroll amount slider in all 31 locales: 10–100% of the previous swipe distance, defaulting to 30%. Apply adjustments immediately and preserve them across app and service restarts.
+
 - Remove the floating Stop mouse button and its reserved click region so other apps remain unobstructed.
 - Move Stop mouse to a quiet notification while mouse conversion is active. Ask once for notification permission; keep the app switch and Ctrl+Alt+R available when declined.
 - Preserve mouse input, keyboard settings and localized notification controls through service reconnection and language changes.

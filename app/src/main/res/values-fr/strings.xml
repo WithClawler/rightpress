@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Durée du toucher de remplacement</string>
     <string name="fallback_duration">Toucher de remplacement : %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Amplitude du défilement à la molette</string>
     <string name="mouse_toggle">Activer/désactiver la réaffectation de la souris</string>
     <string name="independent_keyboard_hint">Indépendant des raccourcis clavier</string>
     <string name="keyboard_shortcuts">Raccourcis clavier</string>

@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">ప్రత్యామ్నాయ టచ్ వ్యవధి</string>
     <string name="fallback_duration">ప్రత్యామ్నాయ టచ్: %1$d మి.సె.</string>
     <string name="duration_ms">%1$d మి.సె.</string>
+    <string name="wheel_scroll_amount">మౌస్ వీల్ స్క్రోల్ పరిమాణం</string>
     <string name="mouse_toggle">మౌస్ రీమ్యాపింగ్‌ను ఆన్ / ఆఫ్ చేయి</string>
     <string name="independent_keyboard_hint">కీబోర్డ్ షార్ట్‌కట్‌లతో సంబంధం లేకుండా పనిచేస్తుంది</string>
     <string name="keyboard_shortcuts">కీబోర్డ్ షార్ట్‌కట్‌లు</string>

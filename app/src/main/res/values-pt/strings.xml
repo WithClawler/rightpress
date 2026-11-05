@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Duração do toque de compatibilidade</string>
     <string name="fallback_duration">Toque de compatibilidade: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Distância de rolagem da roda</string>
     <string name="mouse_toggle">Ativar/desativar remapeamento do mouse</string>
     <string name="independent_keyboard_hint">Independente dos atalhos de teclado</string>
     <string name="keyboard_shortcuts">Atalhos de teclado</string>

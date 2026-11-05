@@ -304,6 +304,8 @@ public final class MainActivity extends Activity {
         }
         content.addView(stage, fill());
         divider(content);
+        renderWheelScrollAmount();
+        divider(content);
         if (ActionCatalog.LONG_PRESS.equals(actionId)) {
             gap(content, 18); content.addView(text(getString(R.string.detailed_settings), 14, MUTED, false));
             LinearLayout settings = wide ? row() : column();
@@ -357,6 +359,49 @@ public final class MainActivity extends Activity {
         if (tablet) fixed.addView(fixedText, new LinearLayout.LayoutParams(0, -2, 1));
         else { fixed.addView(fixedText, fill()); gap(fixed, 12); }
         fixed.addView(mono("Ctrl + Alt + R", 16, 0xFFC4CAD3)); content.addView(fixed, fill());
+    }
+
+    private void renderWheelScrollAmount() {
+        java.text.NumberFormat percentFormat = java.text.NumberFormat.getPercentInstance(
+                getResources().getConfiguration().getLocales().get(0));
+        LinearLayout range = column(); range.setPadding(0, dp(20), 0, dp(20));
+        LinearLayout heading = row();
+        TextView label = text(getString(R.string.wheel_scroll_amount), 16, INK, false);
+        heading.addView(label, new LinearLayout.LayoutParams(0, -2, 1));
+        TextView amount = mono("", 20, INK);
+        LinearLayout.LayoutParams amountPosition = new LinearLayout.LayoutParams(-2, -2);
+        amountPosition.setMarginStart(dp(12));
+        heading.addView(amount, amountPosition);
+        range.addView(heading, fill()); gap(range, 8);
+        SeekBar seek = new SeekBar(this);
+        seek.setContentDescription(getString(R.string.wheel_scroll_amount));
+        seek.setMinHeight(dp(48)); seek.setPadding(dp(4), 0, dp(4), 0);
+        seek.setMax((ShortcutStore.WHEEL_SCROLL_MAX - ShortcutStore.WHEEL_SCROLL_MIN) / ShortcutStore.WHEEL_SCROLL_STEP);
+        seek.setProgress((store.getWheelScrollPercent() - ShortcutStore.WHEEL_SCROLL_MIN) / ShortcutStore.WHEEL_SCROLL_STEP);
+        String initial = percentFormat.format(store.getWheelScrollPercent() / 100.0);
+        amount.setText(initial); seek.setStateDescription(initial);
+        seek.setProgressTintList(ColorStateList.valueOf(BLUE));
+        seek.setProgressBackgroundTintList(ColorStateList.valueOf(LINE));
+        GradientDrawable thumb = round(0xFFC4CAD3, 2);
+        thumb.setSize(dp(16), dp(25)); thumb.setStroke(dp(2), BG);
+        seek.setThumb(thumb); seek.setThumbOffset(dp(8));
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar bar, int value, boolean user) {
+                int percent = ShortcutStore.WHEEL_SCROLL_MIN + value * ShortcutStore.WHEEL_SCROLL_STEP;
+                String formatted = percentFormat.format(percent / 100.0);
+                amount.setText(formatted); bar.setStateDescription(formatted);
+                if (user) store.setWheelScrollPercent(percent);
+            }
+            public void onStartTrackingTouch(SeekBar bar) { }
+            public void onStopTrackingTouch(SeekBar bar) { }
+        });
+        range.addView(seek, fill());
+        LinearLayout limits = row();
+        limits.addView(mono(percentFormat.format(ShortcutStore.WHEEL_SCROLL_MIN / 100.0), 14, MUTED),
+                new LinearLayout.LayoutParams(0, -2, 1));
+        limits.addView(mono(percentFormat.format(ShortcutStore.WHEEL_SCROLL_MAX / 100.0), 14, MUTED));
+        range.addView(limits, fill());
+        content.addView(range, fill());
     }
 
     private void renderKeyboard() {

@@ -28,6 +28,7 @@
     <string name="fallback_duration_accessibility">Yedek dokunma süresi</string>
     <string name="fallback_duration">Yedek dokunma: %1$d ms</string>
     <string name="duration_ms">%1$d ms</string>
+    <string name="wheel_scroll_amount">Fare tekerleği kaydırma miktarı</string>
     <string name="mouse_toggle">Fareyi yeniden atamayı aç/kapat</string>
     <string name="independent_keyboard_hint">Klavye kısayollarından bağımsız çalışır</string>
     <string name="keyboard_shortcuts">Klavye kısayolları</string>

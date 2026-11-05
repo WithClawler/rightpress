@@ -39,6 +39,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
@@ -109,7 +110,7 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         instrumentation.getTargetContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
             .edit().putInt("press_ms", 650).putBoolean("instant_enabled", true)
             .putBoolean("keyboard_enabled", true).putString("mouse_action", ActionCatalog.LONG_PRESS)
-            .remove("shortcut_rules").commit();
+            .remove("shortcut_rules").remove("wheel_scroll_percent").commit();
         // Input tests opt into the current disclosure explicitly in their private fixture.
         // The production app can record this receipt only from its affirmative button.
         assertTrue(AccessibilityConsent.accept(instrumentation.getTargetContext()));
@@ -141,7 +142,7 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
             instrumentation.getTargetContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
                 .edit().putInt("press_ms", 650).putBoolean("instant_enabled", true)
                 .putBoolean("keyboard_enabled", true).putString("mouse_action", ActionCatalog.LONG_PRESS)
-                .remove("shortcut_rules").commit();
+                .remove("shortcut_rules").remove("wheel_scroll_percent").commit();
         }
         try {
             if (originalAppLocales != null) setAppLocales(originalAppLocales);
@@ -763,6 +764,131 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         AtomicInteger scrollY = new AtomicInteger();
         instrumentation.runOnMainSync(() -> scrollY.set(scrollTarget.getScrollY()));
         assertTrue("Mouse wheel must scroll the underlying view; scrollY=" + scrollY.get(), scrollY.get() > 0);
+    }
+
+    public void testWheelAmountDefaultsBoundsAndPersistence() throws Exception {
+        ShortcutStore store = shortcutStore();
+        assertEquals(30, store.getWheelScrollPercent());
+        store.setWheelScrollPercent(Integer.MIN_VALUE);
+        assertEquals(10, new ShortcutStore(activity).getWheelScrollPercent());
+        store.setWheelScrollPercent(Integer.MAX_VALUE);
+        assertEquals(100, store.getWheelScrollPercent());
+        store.setWheelScrollPercent(34);
+        assertEquals(30, store.getWheelScrollPercent());
+        store.setWheelScrollPercent(36);
+        assertEquals(40, store.getWheelScrollPercent());
+        instrumentation.getTargetContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
+                .edit().putString("wheel_scroll_percent", "invalid").commit();
+        assertEquals(30, store.getWheelScrollPercent());
+        store.setWheelScrollPercent(20);
+        reconnectService();
+        assertEquals(20, shortcutStore().getWheelScrollPercent());
+        assertEquals(ActionCatalog.LONG_PRESS, store.getMouseAction());
+        assertTrue(store.isKeyboardEnabled());
+        assertEquals(4, store.load().size());
+    }
+
+    public void testWheelAmountChangesActualScrollWithoutServiceRestart() throws Exception {
+        installHarness();
+        setMode(true);
+        int small = wheelScrollDistance(10, -1);
+        int medium = wheelScrollDistance(30, -1);
+        int original = wheelScrollDistance(100, -1);
+        assertTrue("Minimum wheel setting must still scroll: " + small, small > 0);
+        assertTrue("Default must move less than 100%: " + medium + " vs " + original, medium < original);
+        assertTrue("10% must move less than 30%: " + small + " vs " + medium, small < medium);
+        instrumentation.runOnMainSync(() -> scrollTarget.scrollTo(0, dp(600)));
+        int before = scrollPosition();
+        sendWheel(1);
+        SystemClock.sleep(1200);
+        assertTrue("Positive wheel direction must scroll back up", scrollPosition() < before);
+        android.util.Log.i("RightPressTest", "Wheel distances px: 10%=" + small + ", 30%=" + medium + ", 100%=" + original);
+    }
+
+    private int wheelScrollDistance(int percent, float direction) {
+        shortcutStore().setWheelScrollPercent(percent);
+        instrumentation.runOnMainSync(() -> scrollTarget.scrollTo(0, 0));
+        SystemClock.sleep(150);
+        sendWheel(direction);
+        SystemClock.sleep(1200);
+        return scrollPosition();
+    }
+
+    private int scrollPosition() {
+        AtomicInteger position = new AtomicInteger();
+        instrumentation.runOnMainSync(() -> position.set(scrollTarget.getScrollY()));
+        return position.get();
+    }
+
+    private void sendWheel(float direction) {
+        float[] center = centerOf(scrollTarget);
+        long now = SystemClock.uptimeMillis();
+        injectPointer(now, MotionEvent.ACTION_HOVER_MOVE, center[0], center[1], 0, InputDevice.SOURCE_MOUSE);
+        injectPointer(now, MotionEvent.ACTION_SCROLL, center[0], center[1], 0, InputDevice.SOURCE_MOUSE, direction);
+    }
+
+    public void testWheelSliderKeyboardAdjustmentAndActivityRestart() throws Exception {
+        waitForActivityLayout();
+        instrumentation.setInTouchMode(false);
+        SeekBar seek = wheelSeekBar();
+        assertEquals(2, seek.getProgress());
+        AtomicReference<Boolean> focused = new AtomicReference<>();
+        instrumentation.runOnMainSync(() -> {
+            focused.set(seek.requestFocus());
+            seek.requestRectangleOnScreen(new Rect(0, 0, seek.getWidth(), seek.getHeight()), true);
+        });
+        assertTrue("The wheel slider must accept keyboard focus", focused.get());
+        instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_RIGHT);
+        instrumentation.waitForIdleSync();
+        assertEquals("A keyboard adjustment of the real slider must save immediately", 40,
+                shortcutStore().getWheelScrollPercent());
+        shortcutStore().setMouseAction(ActionCatalog.BACK);
+        instrumentation.runOnMainSync(() -> activity.finish());
+        launchActivity();
+        assertEquals("Other right-click actions must retain the wheel control and saved value", 3,
+                wheelSeekBar().getProgress());
+        assertEquals(ActionCatalog.BACK, shortcutStore().getMouseAction());
+    }
+
+    public void testWheelControlReadableInEveryLocale() throws Exception {
+        LocaleList supported = new LocaleConfig(instrumentation.getTargetContext()).getSupportedLocales();
+        assertNotNull(supported);
+        for (int i = 0; i < supported.size(); i++) {
+            String tag = supported.get(i).toLanguageTag();
+            instrumentation.runOnMainSync(() -> activity.finish());
+            setAppLocales(LocaleList.forLanguageTags(tag));
+            launchActivity();
+            waitForActivityLayout();
+            SeekBar seek = wheelSeekBar();
+            instrumentation.runOnMainSync(() -> {
+                View range = (View) seek.getParent();
+                range.requestRectangleOnScreen(new Rect(0, 0, range.getWidth(), range.getHeight()), true);
+            });
+            instrumentation.waitForIdleSync();
+            assertEquals(2, seek.getProgress());
+            assertMainTextGeometry(tag + "/wheel");
+            captureLocaleUi(tag, "wheel");
+        }
+    }
+
+    private SeekBar wheelSeekBar() {
+        AtomicReference<SeekBar> found = new AtomicReference<>();
+        instrumentation.runOnMainSync(() -> found.set(findWheelSeekBar(activity.getWindow().getDecorView())));
+        assertNotNull("Mouse settings must expose the localized wheel slider", found.get());
+        return found.get();
+    }
+
+    private SeekBar findWheelSeekBar(View view) {
+        if (view instanceof SeekBar && activity.getString(R.string.wheel_scroll_amount)
+                .contentEquals(view.getContentDescription())) return (SeekBar) view;
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                SeekBar found = findWheelSeekBar(group.getChildAt(i));
+                if (found != null) return found;
+            }
+        }
+        return null;
     }
 
     public void testShortcutConsumesRUpAfterModifiersReleased() throws Exception {

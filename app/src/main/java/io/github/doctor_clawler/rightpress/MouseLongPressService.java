@@ -422,7 +422,7 @@ public final class MouseLongPressService extends AccessibilityService {
         int maxY = getResources().getDisplayMetrics().heightPixels;
         float sx = Math.max(dp(32), Math.min(maxX - dp(32), x));
         float sy = Math.max(dp(110), Math.min(maxY - dp(100), y));
-        float length = dp(230);
+        float length = dp(230) * shortcutStore.getWheelScrollPercent() / 100f;
         float ex = sx;
         float ey = sy;
         if (Math.abs(horizontal) > Math.abs(vertical)) {

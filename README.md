@@ -21,6 +21,8 @@ Screenshots: 1.0.0 (10) running on the Android emulator in portrait orientation.
 
 ## Features
 
+- Wheel scroll amount: adjust in the Mouse tab from 10–100% of the previous swipe distance. Default 30%; changes apply immediately and are saved automatically. 100% restores the previous distance, not native mouse-wheel input.
+
 - **Right-click actions:** long-press, Back, Home, Recents or Notifications.
 - **Keyboard actions:** Back, Home, Recents, Notifications, Quick Settings, launch an app or toggle mouse conversion.
 - Independent mouse and keyboard switches; individual shortcut switches.
