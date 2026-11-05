@@ -832,11 +832,20 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         instrumentation.setInTouchMode(false);
         SeekBar seek = wheelSeekBar();
         assertEquals(2, seek.getProgress());
-        AtomicReference<Boolean> focused = new AtomicReference<>();
         instrumentation.runOnMainSync(() -> {
-            focused.set(seek.requestFocus());
             seek.requestRectangleOnScreen(new Rect(0, 0, seek.getWidth(), seek.getHeight()), true);
         });
+        // Window/scroll transitions can restore touch mode after startActivitySync.
+        // Wait for real keyboard focus before sending the physical arrow key.
+        AtomicReference<Boolean> focused = new AtomicReference<>(false);
+        long focusDeadline = SystemClock.uptimeMillis() + 3000;
+        do {
+            instrumentation.waitForIdleSync();
+            instrumentation.setInTouchMode(false);
+            instrumentation.runOnMainSync(() -> focused.set(seek.requestFocus() && seek.hasFocus()));
+            if (focused.get()) break;
+            SystemClock.sleep(50);
+        } while (SystemClock.uptimeMillis() < focusDeadline);
         assertTrue("The wheel slider must accept keyboard focus", focused.get());
         instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_DPAD_RIGHT);
         instrumentation.waitForIdleSync();

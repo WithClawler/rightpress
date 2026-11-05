@@ -2,6 +2,8 @@
 
 Mouse button actions and external-keyboard shortcuts for **Android 14+**.
 
+**Update submitted: 1.0.3 (13).** Adjustable wheel scrolling and notification-based mouse stop. The 100% production rollout was requested on November 5, 2026 at 22:57 KST; Console shows changes in review. Publication follows Google approval and is not yet confirmed. [Submission record](docs/play-production-release.md).
+
 **Google Play release: 1.0.2 (12).** [Install from Google Play](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress). The Console records publication at 21:44 KST on November 4, 2026; the public listing offers installation without joining a test. See the [release record](docs/play-production-release.md).
 
 **Accessibility setup update:** Adds a separate guide in all 31 locales and retains the service-entry scroll/highlight hint for supported Android settings screens. Submission 2 is published with a 100% production rollout. The Console and Korean and US public listings were rechecked on November 5, 2026.

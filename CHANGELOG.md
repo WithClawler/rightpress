@@ -1,12 +1,14 @@
 # Changelog
 
-## 1.0.3 (versionCode 13) — release candidate
+## 1.0.3 (versionCode 13) — Google Play production review requested (2026-11-05)
 
 - Add a wheel scroll amount slider in all 31 locales: 10–100% of the previous swipe distance, defaulting to 30%. Apply adjustments immediately and preserve them across app and service restarts.
 
 - Remove the floating Stop mouse button and its reserved click region so other apps remain unobstructed.
 - Move Stop mouse to a quiet notification while mouse conversion is active. Ask once for notification permission; keep the app switch and Ctrl+Alt+R available when declined.
 - Preserve mouse input, keyboard settings and localized notification controls through service reconnection and language changes.
+
+The signed AAB was built from clean `release` source at tag `v1.0.3-13` (`8c6b07e`) and accepted by Play Console as release 3. The 100% production rollout request was submitted on November 5, 2026 at 22:57 KST; Console shows changes in review while automated checks run. Publication is pending Google approval. The signed APK passed an update-install from 1.0.2 and nine focused input/settings regressions; lint reported 0 errors and 7 existing warnings.
 
 ## 1.0.2 (versionCode 12) — Google Play production release (2026-11-04)
 

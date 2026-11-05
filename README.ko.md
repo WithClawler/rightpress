@@ -2,6 +2,7 @@
 
 **Android 14 이상** 마우스 버튼·외장 키보드 단축키 유틸리티.
 
+- 업데이트 제출: **1.0.3 (13)**. 2026-11-05 22:57 KST에 휠 스크롤 양 조절·알림 종료 개선을 프로덕션 100% 출시로 요청했고 Console의 **검토 중인 변경사항**을 확인했다. Google 승인 후 자동 공개되며 현재 공개 완료는 아님. [제출 기록](docs/play-production-release.md).
 - Google Play 정식 출시: **1.0.2 (12)**. [스토어에서 설치](https://play.google.com/store/apps/details?id=io.github.doctor_clawler.rightpress). Console 출시 시각은 2026-11-04 21:44 KST이며 테스트 참여 없이 공개 스토어에서 설치 가능. [출시 기록](docs/play-production-release.md).
 - 접근성 설정 개선: 31개 로캘에 별도 설정 경로 안내를 추가하고 지원하는 Android 설정 화면의 목록 스크롤·강조 힌트를 유지했다. 제출 ID 2는 프로덕션 100% 출시 상태이며, 2026-11-05 Console과 한국·미국 공개 스토어를 재확인했다.
 - 이전 내부 테스트 기록: **0.6.1-beta.1 (9)**. [테스트 참여 링크](https://play.google.com/apps/internaltest/4701300851549043962)는 등록 계정 5개 대상. 당시 임시 표시명은 `io.github.doctor_clawler.rightpress (unreviewed)`.

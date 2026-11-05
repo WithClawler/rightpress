@@ -1,5 +1,7 @@
 # Google Play 테스트 배포
 
+후속 정식 업데이트 **1.0.3 (13)**은 2026-11-05 22:57 KST에 프로덕션 100% 출시 검토를 요청했다. Console은 **검토 중인 변경사항**이며 자동 검사와 Google 검토가 남아 있다. 공개 완료와 구분한다. [제출 기록](play-production-release.md).
+
 이전 Play 내부 테스트 기록: **`0.6.1-beta.1` / versionCode `9`**. 2026-10-27 01:57 KST에 Console의 **내부 테스터에게 제공됨** 상태와 **검토되지 않음** 표시를 확인했다.
 
 [Google Play 테스트 참여](https://play.google.com/apps/internaltest/4701300851549043962). 당시 기존 `Stack Rush App Tester Beta` 목록의 등록 계정 5개를 대상으로 배포했다. GitHub APK의 최신 공개 버전은 [0.6.0-beta.1](https://github.com/WithClawler/rightpress/releases/tag/v0.6.0-beta.1)이다.
