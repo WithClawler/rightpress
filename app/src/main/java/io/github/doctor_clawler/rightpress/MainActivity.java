@@ -45,6 +45,7 @@ import java.util.UUID;
 
 /** Local settings UI. Input is recorded only while the explicit recorder is active. */
 public final class MainActivity extends Activity {
+    private static final int REQUEST_NOTIFICATIONS = 10;
     private static final String PRIVACY_POLICY_URL = "https://github.com/WithClawler/rightpress/blob/main/PRIVACY.md";
     private static final int INK = 0xFFF0F2F5, MUTED = 0xFFA3ABB7, BLUE = 0xFF4B82FF;
     private static final int BG = 0xFF14171C, RAIL = 0xFF0F1217, LINE = 0xFF343B46;
@@ -62,6 +63,7 @@ public final class MainActivity extends Activity {
     private boolean tablet, wide;
     private int selectedTab;
     private boolean refreshing;
+    private boolean resumed;
     private Editor editor;
     private AlertDialog consentDialog;
     private AlertDialog accessibilitySetupDialog;
@@ -97,53 +99,11 @@ public final class MainActivity extends Activity {
         else outer.addView(workspace, new LinearLayout.LayoutParams(-1, 0, 1));
 
         LinearLayout brand = column();
-        // The escape control stays at the physical top-right in every locale.
-        brand.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         TextView brandTitle = text(getString(R.string.app_name), tablet ? 34 : 30, INK, true);
         brand.addView(brandTitle);
         TextView edition = mono(getString(R.string.input_console), 14, MUTED);
         edition.setLetterSpacing(getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL ? 0 : .14f);
         brand.addView(edition);
-        // Reserve the overlay exit's top-right hit region; all controls begin below it.
-        brand.setMinimumHeight(CaptureOverlay.exitTouchHeight(this, getResources().getDisplayMetrics().widthPixels) - dp(12));
-        brand.addOnLayoutChangeListener((view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-            android.view.WindowMetrics metrics = getWindowManager().getCurrentWindowMetrics();
-            android.graphics.Rect window = metrics.getBounds();
-            Insets safe = metrics.getWindowInsets().getInsetsIgnoringVisibility(
-                    WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout());
-            int captureWidth = Math.max(1, window.width() - safe.left - safe.right);
-            int exitRight = window.right - safe.right;
-            int exitLeft = exitRight - CaptureOverlay.exitTouchWidth(this, captureWidth);
-            int exitBottom = window.top + safe.top + CaptureOverlay.exitTouchHeight(this, captureWidth);
-            int[] position = new int[2];
-            brand.getLocationOnScreen(position);
-            float textLeft = Float.POSITIVE_INFINITY, textRight = Float.NEGATIVE_INFINITY;
-            for (TextView label : new TextView[]{brandTitle, edition}) {
-                android.text.Layout layout = label.getLayout();
-                if (layout == null) continue;
-                int[] glyphOrigin = new int[2];
-                label.getLocationOnScreen(glyphOrigin);
-                float originX = glyphOrigin[0] + label.getCompoundPaddingLeft() - label.getScrollX();
-                for (int line = 0; line < layout.getLineCount(); line++) {
-                    textLeft = Math.min(textLeft, originX + layout.getLineLeft(line));
-                    textRight = Math.max(textRight, originX + layout.getLineRight(line));
-                }
-            }
-            boolean intersects = textLeft < exitRight && textRight + dp(8) > exitLeft;
-            // Base the gap on the unpadded view origin, so relayout cannot oscillate.
-            // Keep it even with mouse mode off to avoid moving the page on each toggle.
-            int topGap = intersects ? Math.max(0, exitBottom - position[1]) : 0;
-            if (brand.getPaddingTop() != topGap) {
-                // Padding changes require a fresh measure pass. Applying them
-                // inside onLayout can reuse the old height and clip both labels.
-                brand.post(() -> {
-                    if (brand.isAttachedToWindow() && brand.getPaddingTop() != topGap) {
-                        brand.setPadding(0, topGap, 0, 0);
-                        brand.requestLayout();
-                    }
-                });
-            }
-        });
         workspace.addView(brand, fill());
         LinearLayout service = row();
         connection = text(getString(R.string.connection_checking), 14, MUTED, false);
@@ -225,13 +185,35 @@ public final class MainActivity extends Activity {
     }
     @Override protected void onResume() {
         super.onResume();
+        resumed = true;
         registerReceiver(stateReceiver, new IntentFilter(MouseLongPressService.ACTION_STATE_CHANGED), Context.RECEIVER_NOT_EXPORTED);
+        MouseLongPressService service = MouseLongPressService.getInstance();
+        if (service != null) service.refreshMouseNotification();
         refresh();
     }
     @Override protected void onPause() {
+        resumed = false;
         if (editor != null) editor.dialog.dismiss();
         unregisterReceiver(stateReceiver);
         super.onPause();
+    }
+
+    private void requestMouseNotificationPermission(MouseLongPressService service) {
+        if (!resumed || service == null || !service.isModeEnabled()
+                || checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    == android.content.pm.PackageManager.PERMISSION_GRANTED) return;
+        android.content.SharedPreferences preferences = getSharedPreferences("notifications", MODE_PRIVATE);
+        if (preferences.getBoolean("permission_requested", false)) return;
+        preferences.edit().putBoolean("permission_requested", true).apply();
+        requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATIONS);
+    }
+
+    @Override public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_NOTIFICATIONS) {
+            MouseLongPressService service = MouseLongPressService.getInstance();
+            if (service != null) service.refreshMouseNotification();
+        }
     }
 
     private void render() {
@@ -446,6 +428,7 @@ public final class MainActivity extends Activity {
         }
         refreshing = false;
         if (editor != null && svc != null) svc.setShortcutRecording(editor.recording);
+        requestMouseNotificationPermission(svc);
     }
 
     private void openEditor(ShortcutRule rule) {

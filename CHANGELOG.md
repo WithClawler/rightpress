@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Remove the floating Stop mouse button and its reserved click region so other apps remain unobstructed.
+- Move Stop mouse to a quiet notification while mouse conversion is active. Ask once for notification permission; keep the app switch and Ctrl+Alt+R available when declined.
+- Preserve mouse input, keyboard settings and localized notification controls through service reconnection and language changes.
+
 ## 1.0.2 (versionCode 12) — Google Play production release (2026-11-04)
 
 - Add a separate accessibility setup guide in all 31 locales before opening system settings from the main connection button or Help.

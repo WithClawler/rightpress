@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Instrumentation;
 import android.app.LocaleManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.service.notification.StatusBarNotification;
 import android.app.LocaleConfig;
 import android.app.UiAutomation;
 import android.accessibilityservice.AccessibilityServiceInfo;
@@ -92,6 +95,14 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         setAppLocales(LocaleList.forLanguageTags("ko"));
         automation = instrumentation.getUiAutomation(UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
         assertNotNull("UiAutomation must preserve the installed accessibility service", automation);
+        boolean deniedNotifications = "true".equals(((android.test.InstrumentationTestRunner) instrumentation)
+                .getArguments().getString("denyNotifications"));
+        if (deniedNotifications) {
+            instrumentation.getTargetContext().getSharedPreferences("notifications", Context.MODE_PRIVATE)
+                    .edit().putBoolean("permission_requested", true).commit();
+        } else {
+            shell("pm grant io.github.doctor_clawler.rightpress android.permission.POST_NOTIFICATIONS");
+        }
         // Hardware keyboard tests leave the system in navigation focus mode.
         // Give every independent temporary UI the same initial interaction mode.
         instrumentation.setInTouchMode(true);
@@ -215,7 +226,7 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         assertEquals("Ctrl+Alt+K", ShortcutStore.chordLabel(KeyEvent.KEYCODE_K, CTRL_ALT));
     }
 
-    public void testAppLanguageSwitchPreservesSettingsAndRefreshesActiveService() throws IOException {
+    public void testAppLanguageSwitchPreservesSettingsAndRefreshesActiveService() throws Exception {
         Context context = instrumentation.getTargetContext();
         ShortcutStore store = shortcutStore();
         store.upsert(new ShortcutRule("language_switch", KeyEvent.KEYCODE_K, CTRL_ALT,
@@ -247,7 +258,7 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
             assertEquals("Language switching must not clear or silently renew consent", consent,
                     context.getSharedPreferences(AccessibilityConsent.PREFERENCES, Context.MODE_PRIVATE).getAll());
             if (tag.equals("ar")) {
-                assertAccessibleOverlayStop(tag);
+                assertNotificationStop(tag);
                 Map<String, Object> stopped = new java.util.HashMap<>(settings);
                 stopped.put("mode_enabled", false);
                 assertEquals("The accessible Stop action may change only the mouse mode", stopped,
@@ -769,30 +780,123 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         assertEquals("Releasing modifiers before R must preserve the key stream", 0, leakedR.get());
     }
 
-    public void testOverlayExitAndActivityStatusRefresh() throws Exception {
+    public void testNotificationStopAndActivityStatusRefresh() throws Exception {
         setMode(true);
         SystemClock.sleep(150);
         assertTrue("Activity must reflect mode activation", containsText("마우스 변환 켜짐"));
-        Field overlayField = MouseLongPressService.class.getDeclaredField("overlay");
-        overlayField.setAccessible(true);
-        AtomicReference<float[]> exitPoint = new AtomicReference<>();
+        assertNotificationStop("ko");
+        assertTrue("Activity status must refresh after notification stop without resuming",
+                containsText("마우스 변환 꺼짐"));
+    }
+
+    public void testFormerStopRegionRelaysClicksAndHasNoAccessibleControl() throws Exception {
+        installHarness();
         instrumentation.runOnMainSync(() -> {
-            try {
-                View overlay = (View) overlayField.get(service);
-                int[] location = new int[2];
-                overlay.getLocationOnScreen(location);
-                float density = overlay.getResources().getDisplayMetrics().density;
-                android.graphics.Insets safe = ((CaptureOverlay) overlay).safeInsets();
-                exitPoint.set(new float[]{location[0] + overlay.getWidth() - safe.right - 60 * density,
-                    location[1] + safe.top + 32 * density});
-            } catch (IllegalAccessException ex) {
-                throw new AssertionError(ex);
-            }
+            ViewGroup root = (ViewGroup) target.getParent();
+            int top = activity.getWindowManager().getCurrentWindowMetrics().getWindowInsets()
+                    .getInsetsIgnoringVisibility(android.view.WindowInsets.Type.systemBars()
+                            | android.view.WindowInsets.Type.displayCutout()).top;
+            root.setPadding(0, top, 0, 0);
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) target.getLayoutParams();
+            params.width = dp(150);
+            params.height = dp(64);
+            params.gravity = android.view.Gravity.RIGHT;
+            target.setLayoutParams(params);
         });
-        touchTap(exitPoint.get()[0], exitPoint.get()[1]);
-        SystemClock.sleep(200);
-        assertFalse("Visible overlay exit must disable capture mode", modeEnabled());
-        assertTrue("Activity status must refresh after overlay exit without resuming", containsText("마우스 변환 꺼짐"));
+        instrumentation.waitForIdleSync();
+        settleWindows();
+        setMode(true);
+        instrumentation.runOnMainSync(() -> {
+            View overlay = (View) serviceFieldOnMain("overlay");
+            assertEquals(View.IMPORTANT_FOR_ACCESSIBILITY_NO, overlay.getImportantForAccessibility());
+            assertFalse("Input capture must not masquerade as a stop button", overlay.isClickable());
+            assertNull("No invisible stop label", overlay.getContentDescription());
+        });
+        float[] point = centerOf(target);
+        mouseClick(point[0], point[1], MotionEvent.BUTTON_PRIMARY);
+        waitForCount(clicks, 1, 2500);
+        assertEquals("The old stop region must relay a primary click", 1, clicks.get());
+        assertTrue("Top-right clicks must leave mouse conversion enabled", modeEnabled());
+        long deadline = SystemClock.uptimeMillis() + 3000;
+        while (!captureOverlayAttached() && SystemClock.uptimeMillis() < deadline) SystemClock.sleep(30);
+        assertTrue("Capture must finish restoring after the primary relay", captureOverlayAttached());
+        settleWindows();
+        mouseClick(point[0], point[1], MotionEvent.BUTTON_SECONDARY);
+        waitForCount(longClicks, 1, 2500);
+        assertEquals("The old stop region must relay a secondary click (point=" + point[0] + "," + point[1]
+                + ", semanticAttempts=" + semanticLongClickAttempts.get() + ")", 1, longClicks.get());
+        assertTrue(modeEnabled());
+    }
+
+    public void testNotificationLifecycle() throws Exception {
+        Context context = instrumentation.getTargetContext();
+        NotificationManager manager = context.getSystemService(NotificationManager.class);
+        setMode(true);
+        assertNotNull(activeMouseNotification());
+        assertEquals(NotificationManager.IMPORTANCE_LOW,
+                manager.getNotificationChannel(MouseLongPressService.MOUSE_NOTIFICATION_CHANNEL).getImportance());
+        assertNull("No notification sound", manager.getNotificationChannel(
+                MouseLongPressService.MOUSE_NOTIFICATION_CHANNEL).getSound());
+        reconnectService();
+        assertNotNull("Active service reconnection restores the notification", activeMouseNotification());
+        setMode(false);
+        waitForNoMouseNotification();
+        reconnectService();
+        assertNull("A stopped service must not recreate a notification", activeMouseNotification());
+    }
+
+    /** Run with -e denyNotifications true after revoking POST_NOTIFICATIONS outside instrumentation. */
+    public void testNotificationPermissionStateKeepsControls() throws Exception {
+        Context context = instrumentation.getTargetContext();
+        boolean granted = context.checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                == android.content.pm.PackageManager.PERMISSION_GRANTED;
+        setMode(true);
+        assertTrue("Notification permission must not gate mouse mode", modeEnabled());
+        if (granted) assertNotNull(activeMouseNotification());
+        else waitForNoMouseNotification();
+        instrumentation.runOnMainSync(() -> {
+            View overlay = (View) serviceFieldOnMain("overlay");
+            assertFalse("Permission denial must not restore a stop button", overlay.isClickable());
+            assertNull(overlay.getContentDescription());
+        });
+        shortcutWithModifiersReleasedFirst();
+        waitForMode(false, 3000);
+        assertFalse("Ctrl+Alt+R must work without notification permission", modeEnabled());
+    }
+
+    public void testNotificationShadeStopWithActualUi() throws Exception {
+        setMode(true);
+        captureLocaleUi("ko", "mouse-clean");
+        shell("cmd statusbar expand-notifications");
+        try {
+            SystemClock.sleep(700);
+            settleWindows();
+            Bitmap screenshot = automation.takeScreenshot();
+            assertNotNull(screenshot);
+            try (FileOutputStream output = new FileOutputStream(new File(
+                    instrumentation.getTargetContext().getCacheDir(), "notification-shade.png"))) {
+                assertTrue(screenshot.compress(Bitmap.CompressFormat.PNG, 100, output));
+            } finally { screenshot.recycle(); }
+            AccessibilityServiceInfo info = automation.getServiceInfo();
+            info.flags |= AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
+            automation.setServiceInfo(info);
+            Rect actionBounds = new Rect();
+            for (AccessibilityWindowInfo window : automation.getWindows()) {
+                AccessibilityNodeInfo root = window.getRoot();
+                if (root != null) {
+                    Rect found = notificationActionBounds(root, "마우스 끄기");
+                    if (found != null) actionBounds.set(found);
+                    root.recycle();
+                }
+                window.recycle();
+            }
+            assertFalse("The real notification action must be reachable in the shade", actionBounds.isEmpty());
+            touchTap(actionBounds.centerX(), actionBounds.centerY());
+            waitForMode(false, 3000);
+            assertFalse("The visible notification action must stop conversion", modeEnabled());
+            assertFalse(savedMode());
+            waitForNoMouseNotification();
+        } finally { shell("cmd statusbar collapse"); }
     }
 
     public void testRapidOffOnInvalidatesPendingGesture() throws Exception {
@@ -1395,125 +1499,75 @@ public final class RightPressInstrumentationTest extends InstrumentationTestCase
         } finally { screenshot.recycle(); }
     }
 
-    private void assertServiceLanguage(String tag, String phase) {
-        long deadline = SystemClock.uptimeMillis() + 5000;
-        AtomicReference<String> serviceLanguage = new AtomicReference<>();
-        AtomicReference<String> overlayLabel = new AtomicReference<>();
-        do {
-            instrumentation.runOnMainSync(() -> {
-                service = MouseLongPressService.getInstance();
-                if (service != null) {
-                    serviceLanguage.set(service.getResources().getConfiguration().getLocales().get(0).toLanguageTag());
-                    Object overlay = serviceFieldOnMain("overlay");
-                    if (overlay instanceof View) overlayLabel.set(String.valueOf(((View) overlay).getContentDescription()));
-                }
-            });
-            if (tag.equals(serviceLanguage.get())
-                    && localizedContext(tag).getString(R.string.stop_mouse).equals(overlayLabel.get())) break;
-            SystemClock.sleep(30);
-        } while (SystemClock.uptimeMillis() < deadline);
-        assertEquals("Service resources must retain the app locale after " + phase, tag, serviceLanguage.get());
-        assertEquals("The actual stop control must retain the app locale after " + phase,
-                localizedContext(tag).getString(R.string.stop_mouse), overlayLabel.get());
-    }
-
-    private void assertAccessibleOverlayStop(String tag) {
-        AccessibilityServiceInfo automationInfo = automation.getServiceInfo();
-        int originalFlags = automationInfo.flags;
-        automationInfo.flags |= AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
-        automation.setServiceInfo(automationInfo);
-        AccessibilityNodeInfo stop = null;
-        Rect windowBounds = new Rect();
-        String label = localizedContext(tag).getString(R.string.stop_mouse);
-        try {
-            long deadline = SystemClock.uptimeMillis() + 5000;
-            do {
-                List<AccessibilityWindowInfo> windows = automation.getWindows();
-                try {
-                    for (AccessibilityWindowInfo window : windows) {
-                        if (window.getType() != AccessibilityWindowInfo.TYPE_ACCESSIBILITY_OVERLAY) continue;
-                        AccessibilityNodeInfo root = window.getRoot();
-                        if (root == null) continue;
-                        try { stop = findAccessibleDescription(root, label); }
-                        finally { root.recycle(); }
-                        if (stop != null) { window.getBoundsInScreen(windowBounds); break; }
-                    }
-                } finally { for (AccessibilityWindowInfo window : windows) window.recycle(); }
-                if (stop != null) break;
-                SystemClock.sleep(50);
-            } while (SystemClock.uptimeMillis() < deadline);
-            assertNotNull("The localized stop control must be exposed to accessibility", stop);
-            assertEquals(Button.class.getName(), String.valueOf(stop.getClassName()));
-            assertTrue("The stop node must be visible and clickable", stop.isVisibleToUser() && stop.isClickable());
+    private Rect notificationActionBounds(AccessibilityNodeInfo node, String label) {
+        if (label.contentEquals(node.getText() == null ? "" : node.getText())) {
             Rect bounds = new Rect();
-            stop.getBoundsInScreen(bounds);
-            assertFalse("The stop node must have a visible hit area", bounds.isEmpty());
-            AtomicReference<String> actualOverlay = new AtomicReference<>();
-            instrumentation.runOnMainSync(() -> {
-                View overlay = (View) serviceFieldOnMain("overlay");
-                int[] location = new int[2];
-                overlay.getLocationOnScreen(location);
-                int[] inWindow = new int[2];
-                overlay.getLocationInWindow(inWindow);
-                Rect globalVisible = new Rect();
-                overlay.getGlobalVisibleRect(globalVisible);
-                AccessibilityNodeInfo localNode = overlay.createAccessibilityNodeInfo();
-                int windowId = localNode.getWindowId();
-                localNode.recycle();
-                actualOverlay.set("view=" + overlay.getWidth() + "x" + overlay.getHeight()
-                        + " location=" + location[0] + "," + location[1] + " visible=" + globalVisible
-                        + " inWindow=" + inWindow[0] + "," + inWindow[1]
-                        + " safeInsets=" + ((CaptureOverlay) overlay).safeInsets()
-                        + " display=" + service.getSystemService(WindowManager.class).getMaximumWindowMetrics().getBounds()
-                        + " windowId=" + windowId);
-            });
-            Rect nodeInWindow = new Rect();
-            stop.getBoundsInWindow(nodeInWindow);
-            String geometry = "node=" + bounds + " window=" + windowBounds + " " + actualOverlay.get()
-                    + " nodeInWindow=" + nodeInWindow + " nodeWindowId=" + stop.getWindowId();
-            // AOSP reports this 800x1280 window as (0,0)-(799,1279), while
-            // View/AccessibilityNodeInfo use exclusive edges (0,0)-(800,1280).
-            // Allow that observed one physical-pixel boundary discrepancy only.
-            Rect reportedWindowWithRounding = new Rect(windowBounds);
-            reportedWindowWithRounding.inset(-1, -1);
-            assertTrue("The stop node must be inside the overlay window (1px reporting tolerance): " + geometry,
-                    reportedWindowWithRounding.contains(bounds));
-            assertEquals("In-window bounds must describe the same button width: " + geometry,
-                    bounds.width(), nodeInWindow.width());
-            assertEquals("In-window bounds must describe the same button height: " + geometry,
-                    bounds.height(), nodeInWindow.height());
-            assertTrue("The stop node must describe the button, not the full-screen input overlay",
-                    bounds.width() < windowBounds.width() && bounds.height() < windowBounds.height() / 2);
-            assertTrue("The escape control stays at the physical top-right even in RTL",
-                    bounds.centerX() > windowBounds.centerX() && bounds.centerY() < windowBounds.centerY());
-            assertTrue("The stop node must provide ACTION_CLICK",
-                    stop.getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK));
-            assertTrue("The accessible stop action must be accepted", stop.performAction(AccessibilityNodeInfo.ACTION_CLICK));
-            waitForMode(false, 3000);
-            assertFalse("Accessibility ACTION_CLICK must stop mouse conversion", modeEnabled());
-            assertFalse("The stop action must remove the capture overlay", captureOverlayAttached());
-            assertFalse("The stop action must persist mouse OFF", savedMode());
-        } finally {
-            if (stop != null) stop.recycle();
-            AccessibilityServiceInfo restored = automation.getServiceInfo();
-            restored.flags = originalFlags;
-            automation.setServiceInfo(restored);
-        }
-    }
-
-    private AccessibilityNodeInfo findAccessibleDescription(AccessibilityNodeInfo node, String description) {
-        if (description.contentEquals(node.getContentDescription() == null ? "" : node.getContentDescription())) {
-            return AccessibilityNodeInfo.obtain(node);
+            node.getBoundsInScreen(bounds);
+            return bounds;
         }
         for (int i = 0; i < node.getChildCount(); i++) {
             AccessibilityNodeInfo child = node.getChild(i);
             if (child == null) continue;
             try {
-                AccessibilityNodeInfo match = findAccessibleDescription(child, description);
-                if (match != null) return match;
+                Rect found = notificationActionBounds(child, label);
+                if (found != null) return found;
             } finally { child.recycle(); }
         }
         return null;
+    }
+
+    private Notification activeMouseNotification() {
+        NotificationManager manager = instrumentation.getTargetContext().getSystemService(NotificationManager.class);
+        for (StatusBarNotification entry : manager.getActiveNotifications()) {
+            if (entry.getId() == MouseLongPressService.MOUSE_NOTIFICATION_ID) return entry.getNotification();
+        }
+        return null;
+    }
+
+    private void waitForNoMouseNotification() {
+        long deadline = SystemClock.uptimeMillis() + 3000;
+        while (activeMouseNotification() != null && SystemClock.uptimeMillis() < deadline) SystemClock.sleep(30);
+        assertNull("Stopping must remove the notification", activeMouseNotification());
+    }
+
+    private void assertServiceLanguage(String tag, String phase) {
+        long deadline = SystemClock.uptimeMillis() + 5000;
+        AtomicReference<String> serviceLanguage = new AtomicReference<>();
+        Notification notification;
+        do {
+            instrumentation.runOnMainSync(() -> {
+                service = MouseLongPressService.getInstance();
+                if (service != null) serviceLanguage.set(
+                        service.getResources().getConfiguration().getLocales().get(0).toLanguageTag());
+            });
+            notification = activeMouseNotification();
+            if (tag.equals(serviceLanguage.get()) && notification != null && notification.actions != null
+                    && localizedContext(tag).getString(R.string.stop_mouse).contentEquals(notification.actions[0].title)) break;
+            SystemClock.sleep(30);
+        } while (SystemClock.uptimeMillis() < deadline);
+        assertEquals("Service resources must retain the app locale after " + phase, tag, serviceLanguage.get());
+        assertNotNull("An enabled mode must have a notification", notification);
+        assertEquals(localizedContext(tag).getString(R.string.mouse_on),
+                notification.extras.getString(Notification.EXTRA_TITLE));
+        assertNotNull(notification.actions);
+        assertEquals(localizedContext(tag).getString(R.string.stop_mouse), notification.actions[0].title.toString());
+    }
+
+    private void assertNotificationStop(String tag) throws Exception {
+        assertServiceLanguage(tag, "notification stop");
+        Notification notification = activeMouseNotification();
+        Map<String, ?> settings = instrumentation.getTargetContext()
+                .getSharedPreferences("settings", Context.MODE_PRIVATE).getAll();
+        assertTrue("The stop token must be immutable", notification.actions[0].actionIntent.isImmutable());
+        notification.actions[0].actionIntent.send();
+        waitForMode(false, 3000);
+        assertFalse("Notification action must remove capture", captureOverlayAttached());
+        assertFalse("Notification action must persist OFF", savedMode());
+        waitForNoMouseNotification();
+        Map<String, Object> stopped = new java.util.HashMap<>(settings);
+        stopped.put("mode_enabled", false);
+        assertEquals("Stopping must preserve keyboard settings and rules", stopped,
+                instrumentation.getTargetContext().getSharedPreferences("settings", Context.MODE_PRIVATE).getAll());
     }
 
     /** Resolves the current real window, including dialogs, without private UI fields. */

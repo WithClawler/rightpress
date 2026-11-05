@@ -90,7 +90,7 @@ Text uses Android’s system fonts and fallback glyphs. No font files, downloads
 
 Add a rule with `Keyboard → ＋ Add shortcut → Record key combination`, press Ctrl or Alt with another key, choose an action and save. Shift is optional. Esc cancels recording. Duplicate combinations, including disabled rules, are rejected. Meta/Windows, Sym and Fn combinations are not supported.
 
-- Stop mouse conversion: `Ctrl+Alt+R`, the top-right `Stop mouse` button or the mouse switch.
+- Stop mouse conversion: `Ctrl+Alt+R`, the `Stop mouse` notification action or the mouse switch. The app asks once for notification permission while mouse conversion is active. If declined, use the shortcut or app switch; no floating stop button is shown.
 - Stop configurable shortcuts: turn off `Keyboard shortcuts`. The fixed `Ctrl+Alt+R` toggle remains available.
 - Stop all input handling and withdraw access: disable the service in Android accessibility settings.
 

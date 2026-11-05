@@ -4,7 +4,14 @@ import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.accessibilityservice.GestureDescription;
 import android.app.LocaleManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Path;
@@ -31,6 +38,9 @@ import java.util.Set;
  */
 public final class MouseLongPressService extends AccessibilityService {
     static final String ACTION_STATE_CHANGED = "io.github.doctor_clawler.rightpress.STATE_CHANGED";
+    private static final String ACTION_STOP_MOUSE = "io.github.doctor_clawler.rightpress.STOP_MOUSE";
+    static final String MOUSE_NOTIFICATION_CHANNEL = "mouse_mode";
+    static final int MOUSE_NOTIFICATION_ID = 1;
     private static MouseLongPressService instance;
     private final Handler main = new Handler(Looper.getMainLooper());
     private final Handler gestureCallbacks = new Handler(Looper.getMainLooper());
@@ -46,6 +56,12 @@ public final class MouseLongPressService extends AccessibilityService {
     private int activeGestureGeneration = -1;
     private Runnable deferredShortcut;
     private Resources languageResources;
+    private boolean stopReceiverRegistered;
+    private final BroadcastReceiver stopReceiver = new BroadcastReceiver() {
+        @Override public void onReceive(Context context, Intent intent) {
+            if (ACTION_STOP_MOUSE.equals(intent.getAction())) enableMode(false);
+        }
+    };
 
     public static MouseLongPressService getInstance() { return instance; }
     public boolean isModeEnabled() { return modeEnabled; }
@@ -84,6 +100,10 @@ public final class MouseLongPressService extends AccessibilityService {
             return;
         }
         instance = this;
+        if (!stopReceiverRegistered) {
+            registerReceiver(stopReceiver, new IntentFilter(ACTION_STOP_MOUSE), Context.RECEIVER_NOT_EXPORTED);
+            stopReceiverRegistered = true;
+        }
         shortcutStore = new ShortcutStore(this);
         AccessibilityServiceInfo info = getServiceInfo();
         if (info != null) {
@@ -94,6 +114,7 @@ public final class MouseLongPressService extends AccessibilityService {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         setModeEnabled(getSharedPreferences("settings", MODE_PRIVATE)
                 .getBoolean("mode_enabled", true));
+        refreshMouseNotification();
         notifyStateChanged();
     }
 
@@ -104,7 +125,6 @@ public final class MouseLongPressService extends AccessibilityService {
         refreshLanguageResources();
         // Refresh display text without changing input settings or interrupting a gesture.
         if (overlay != null) {
-            overlay.refreshLanguage();
             if (overlayAttached && windowManager != null
                     && overlay.getLayoutParams() instanceof WindowManager.LayoutParams) {
                 WindowManager.LayoutParams params = (WindowManager.LayoutParams) overlay.getLayoutParams();
@@ -113,11 +133,17 @@ public final class MouseLongPressService extends AccessibilityService {
                 catch (RuntimeException ex) { android.util.Log.w("RightPress", "Overlay title refresh failed", ex); }
             }
         }
+        refreshMouseNotification();
     }
     // This callback interrupts accessibility feedback, not the user's mode choice.
     @Override public void onInterrupt() { }
     @Override public void onDestroy() {
         setModeEnabled(false);
+        getSystemService(NotificationManager.class).cancel(MOUSE_NOTIFICATION_ID);
+        if (stopReceiverRegistered) {
+            unregisterReceiver(stopReceiver);
+            stopReceiverRegistered = false;
+        }
         consumedKeys.clear();
         shortcutRecording = false;
         activeGestureGeneration = -1;
@@ -241,7 +267,40 @@ public final class MouseLongPressService extends AccessibilityService {
         } else {
             hideOverlay();
         }
+        refreshMouseNotification();
         notifyStateChanged();
+    }
+
+    /** The only visible stop control outside the app lives in the notification shade. */
+    void refreshMouseNotification() {
+        NotificationManager notifications = getSystemService(NotificationManager.class);
+        if (!modeEnabled || !AccessibilityConsent.isAccepted(this) || !notifications.areNotificationsEnabled()) {
+            notifications.cancel(MOUSE_NOTIFICATION_ID);
+            return;
+        }
+        NotificationChannel channel = new NotificationChannel(MOUSE_NOTIFICATION_CHANNEL,
+                getString(R.string.mouse_mode), NotificationManager.IMPORTANCE_LOW);
+        channel.setShowBadge(false);
+        channel.setSound(null, null);
+        channel.enableVibration(false);
+        notifications.createNotificationChannel(channel);
+        PendingIntent stop = PendingIntent.getBroadcast(this, 0,
+                new Intent(ACTION_STOP_MOUSE).setPackage(getPackageName()),
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent open = PendingIntent.getActivity(this, 0,
+                new Intent(this, MainActivity.class),
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        Notification notification = new Notification.Builder(this, MOUSE_NOTIFICATION_CHANNEL)
+                .setSmallIcon(android.R.drawable.ic_media_pause)
+                .setContentTitle(getString(R.string.mouse_on))
+                .setContentIntent(open)
+                .addAction(new Notification.Action.Builder(null, getString(R.string.stop_mouse), stop).build())
+                .setOngoing(true)
+                .setOnlyAlertOnce(true)
+                .setShowWhen(false)
+                .setCategory(Notification.CATEGORY_SERVICE)
+                .build();
+        notifications.notify(MOUSE_NOTIFICATION_ID, notification);
     }
 
     private void notifyStateChanged() {
