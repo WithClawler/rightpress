@@ -1,0 +1,2 @@
+Adjust wheel scroll amount from 10–100%, with a smaller default of 30%.
+Stop mouse remapping from a quiet notification instead of a floating screen button.

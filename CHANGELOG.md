@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.3 (versionCode 13) — release candidate
 
 - Add a wheel scroll amount slider in all 31 locales: 10–100% of the previous swipe distance, defaulting to 30%. Apply adjustments immediately and preserve them across app and service restarts.
 
