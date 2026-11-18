@@ -89,6 +89,12 @@ APP_BASE_NAME=${0##*/}
 APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s
 ' "$PWD" ) || exit
 
+# Route supported headless checks from a managed works checkout.
+ops_gradle_route="${OPS_PROJECT_ROOT:-/Volumes/BigHugeMemory/works/_ops}/scripts/gradle-validation.sh"
+if [ -r "$ops_gradle_route" ]; then
+    . "$ops_gradle_route"
+fi
+
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD=maximum
 
